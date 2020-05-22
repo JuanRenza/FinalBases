@@ -30,6 +30,10 @@ public class Administrador {
     private String contraseñaAdmin;
     private String direccionAdmin;
     private String fotoAdmin;
+
+    public Administrador() {
+    }
+    
     
     public Administrador(String nom1Admin1, String nom2Admin1, String ape1Admin1, String ape2Admin1, String direccionAdmin1, String contraseñaAdmin1, String fotoAdmin1) {
     }
@@ -61,11 +65,7 @@ public class Administrador {
         this.fotoAdmin = fotoAdmin;
     }
 
-    public Administrador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
+   
     
     public int getIdAdmin() {
         return idAdmin;
@@ -145,6 +145,7 @@ public class Administrador {
     }
     
      public LinkedList<Administrador> consultarAdministrador(String sql) {
+          ResultSet rs = null;
         LinkedList<Administrador> lc = new LinkedList<>();
         BaseDatos objb = new BaseDatos();
         
@@ -155,23 +156,35 @@ public class Administrador {
         String correoAdmin = "";
         String direccionAdmin = "";
         String contraseñaAdmin = "";
-        String fotoAdmin = "";
+       // String fotoAdmin = "";
         
 
-        ResultSet rs = null;
-        if (objb.crearConexion()) {
+       
+         if (objb.crearConexion()) {
             try {
-                rs = objb.getSt().executeQuery(sql);
-                while (rs.next()) {
+                Statement sentencia = objb.getConexion().createStatement();
+                rs = sentencia.executeQuery(sql);
+                 while (rs.next()) {
                     
                     nom1Admin = rs.getString("nom1Admin");
-                    nom2Admin = rs.getString("nom2Admin");
                     ape1Admin = rs.getString("ape1Admin");
-                    ape2Admin = rs.getString("ape2Admin");
-                    direccionAdmin = rs.getString("direccion");
-                    contraseñaAdmin =rs.getString("contraseña");
-                    fotoAdmin= rs.getString("fotoAdmin");
-                    lc.add(new Administrador( nom1Admin, nom2Admin, ape1Admin, ape2Admin,  direccionAdmin, contraseñaAdmin, fotoAdmin));
+                    try{
+                        nom2Admin = rs.getString("nom2Admin");
+                    }catch(NullPointerException n){}
+                    if(nom2Admin==null){
+                        nom2Admin ="";
+                    }
+                    try{
+                        ape2Admin =rs.getString("ape2Admin");
+                    }catch(NullPointerException n){}
+                    if(ape2Admin==null){
+                        ape2Admin="";
+                    }
+                    direccionAdmin = rs.getString("direccionAdmin");
+                    correoAdmin = rs.getString("correoAdmin");
+                    contraseñaAdmin =rs.getString("contraseñaAdmin");
+                   // fotoAdmin= rs.getString("fotoAdmin");
+                    lc.add(new Administrador( nom1Admin, nom2Admin, ape1Admin, ape2Admin,correoAdmin,  direccionAdmin, contraseñaAdmin));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -179,6 +192,39 @@ public class Administrador {
         }
         return lc;
      }
+      public LinkedList<Administrador> consultarAdministradores(String sql) {
+        LinkedList<Administrador> lc = new LinkedList<>();
+        BaseDatos objb = new BaseDatos();
+      //  String identificacionC = "";
+        String nom1Cliente = "";
+        String nom2Cliente = "";
+        String ape1Cliente = "";
+        String ape2Cliente = "";
+        String correoAdmin = "";
+        String direccionAdmin = "";
+        String contraseñaAdmin="";
+
+        ResultSet rs = null;
+        if (objb.crearConexion()) {
+            try {
+                rs = objb.getSt().executeQuery(sql);
+                while (rs.next()) {
+                   
+                    nom1Cliente = rs.getString("nom1Cliente");
+                    nom2Cliente = rs.getString("nom2Cliente");
+                    ape1Cliente = rs.getString("ape1Cliente");
+                    ape2Cliente = rs.getString("ape2Cliente");
+                    correoAdmin = rs.getString("correoAdmin");
+                    direccionAdmin = rs.getString("direccionAdmin");
+                    contraseñaAdmin = rs.getString("contraseñaAdmin");
+                    lc.add(new Administrador(nom1Cliente, nom2Cliente, ape1Cliente, ape2Cliente, correoAdmin, direccionAdmin,contraseñaAdmin));
+                }
+            } catch (SQLException ex) {
+                Logger.getLogger(Tienda.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+        return lc;
+      }
      
       public boolean insertarAdministrador(Administrador objT, String sql) {
         boolean t = false;
@@ -190,13 +236,15 @@ public class Administrador {
                 objb.getConexion().setAutoCommit(false);
                 ps = objb.getConexion().prepareStatement(sql);
                
+                
                 ps.setString(1, objT.getNom1Admin());
                 ps.setString(2, objT.getNom2Admin());
                 ps.setString(3, objT.getApe1Admin());
                 ps.setString(4, objT.getApe2Admin());
-                ps.setString(5, objT.getDireccionAdmin());
-                ps.setString(6, objT.getContraseñaAdmin());
-                ps.setString(7, objT.getFotoAdmin());
+                ps.setString(5, objT.getCorreoAdmin());
+                ps.setString(6, objT.getDireccionAdmin());
+                ps.setString(7, objT.getContraseñaAdmin());
+                               // ps.setString(7, objT.getFotoAdmin());
 
                 ps.executeUpdate();
                 objb.getConexion().commit();

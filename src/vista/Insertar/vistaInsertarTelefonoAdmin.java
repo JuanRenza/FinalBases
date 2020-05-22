@@ -115,7 +115,7 @@ public class vistaInsertarTelefonoAdmin extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
-          ControlTelefonosAdmin objcc=new ControlTelefonosAdmin();
+         ControlTelefonosAdmin objcc=new ControlTelefonosAdmin();
         
         boolean t=objcc.insertarTelefonosAdmin(listaTelefonos);
         

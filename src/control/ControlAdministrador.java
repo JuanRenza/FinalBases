@@ -15,18 +15,20 @@ import modelo.Administrador;
 public class ControlAdministrador {
     
     public LinkedList<Administrador> consultarAdministrador() {
-        LinkedList<Administrador> listaA = new LinkedList<>();
-        Administrador objclasi = new Administrador();
+        
+        //Administrador objclasi = new Administrador();
         String sql = "select * from administradores;";
-        listaA = objclasi.consultarAdministrador(sql);
-        return listaA;
+        Administrador objA = new Administrador();
+        LinkedList<Administrador> listaA = objA.consultarAdministrador(sql);
+         return listaA;
+        
     }
 
      public boolean insertarAdministrador(Administrador objC) {
         boolean t = false;
         Administrador objC2 = new Administrador();
         String sql = "";
-        sql = "insert into administradores( nom1Admin, nom2Admin, ape1Admin, ape2Admin, correoAdmin, contraseñaAdmin, direccionAdmin,fotoAdmin) values(?,?,?,?,?,?,?,?);";
+        sql = "insert into administradores( nom1Admin, nom2Admin, ape1Admin, ape2Admin, correoAdmin, contraseñaAdmin, direccionAdmin) values(?,?,?,?,?,?,?);";
         t = objC2.insertarAdministrador(objC,sql);
 
         return t;
@@ -36,11 +38,11 @@ public class ControlAdministrador {
 
         boolean t = false;
         Administrador getobjeto = new Administrador();
-        String sql = "DELETE FROM administrador WHERE(correoAdmin = '" + listaA + "');";
+        String sql = "DELETE FROM administradores WHERE(correoAdmin = '" + listaA + "');";
         t = getobjeto.eliminarAdministrador(sql);
 
         return t;
     }
-    
+       
     
 }

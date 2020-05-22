@@ -8,6 +8,7 @@ package modelo;
 import control.BaseDatos;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.LinkedList;
 
 /**
  *
@@ -97,6 +98,10 @@ public class TelefonosAdmin {
         }
 
         return t;
+    }
+
+    public LinkedList<TelefonosAdmin> consultarTelefonosAdmin(String sql) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     }
      
 }
