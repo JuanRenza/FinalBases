@@ -301,7 +301,7 @@ public class vistaClienteVendedor extends javax.swing.JFrame {
 
         ClienteVendedor objCliente = new ClienteVendedor(nom1, nom2, ape1, ape2, fecha, direccion);
         ControlClienteVendedor objcp = new ControlClienteVendedor();
-        boolean t = objcp.consultarClienteV(nom1, nom2, ape1, ape2, fecha, direccion, id);
+        boolean t = objcp.actualizarClientesV(nom1, nom2, ape1, ape2, fecha, direccion, id);
         if (t == true) {
             JOptionPane.showMessageDialog(rootPane, "Insertado con exito");
         } else {

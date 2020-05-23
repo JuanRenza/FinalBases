@@ -25,7 +25,7 @@ public class Tienda {
     private int idTienda;
     private String nomTienda;
     private String direccionTienda;
-    private String fotoTienda;
+    private byte[] fotoTienda;
     private String descripcionTienda;
     private int aprobacionTienda;
     private String fechaAprobacionTienda;
@@ -40,7 +40,7 @@ public class Tienda {
         this.idTienda = idTienda;
     }
 
-    public Tienda(int idTienda, String nomTienda, String direccionTienda, String fotoTienda, String descripcionTienda, int aprobacionTienda, String fechaAprobacionTienda, int idAdminTF, String identificacionCVF, int idFotoPredeterminadaTF) {
+    public Tienda(int idTienda, String nomTienda, String direccionTienda, byte[] fotoTienda, String descripcionTienda, int aprobacionTienda, String fechaAprobacionTienda, int idAdminTF, String identificacionCVF, int idFotoPredeterminadaTF) {
         this.idTienda = idTienda;
         this.nomTienda = nomTienda;
         this.direccionTienda = direccionTienda;
@@ -53,7 +53,7 @@ public class Tienda {
         this.idFotoPredeterminadaTF = idFotoPredeterminadaTF;
     }
 
-    public Tienda(String nomTienda, String direccionTienda, String fotoTienda, String descripcionTienda, int aprobacionTienda, String fechaAprobacionTienda, int idAdminTF, String identificacionCVF, int idFotoPredeterminadaTF) {
+    public Tienda(String nomTienda, String direccionTienda, byte[] fotoTienda, String descripcionTienda, int aprobacionTienda, String fechaAprobacionTienda, int idAdminTF, String identificacionCVF, int idFotoPredeterminadaTF) {
         this.nomTienda = nomTienda;
         this.direccionTienda = direccionTienda;
         this.fotoTienda = fotoTienda;
@@ -64,6 +64,19 @@ public class Tienda {
         this.identificacionCVF = identificacionCVF;
         this.idFotoPredeterminadaTF = idFotoPredeterminadaTF;
     }
+
+//    public Tienda(String nombre, String direccion, Tienda fp, String descripcion, int aprobacion, String fechaaprobacion, int idadmin, String idcvf, int idfotop) {
+//        this.nomTienda = nombre;
+//        this.direccionTienda = direccion;
+//        this.fotoTienda = fp;
+//        this.descripcionTienda = descripcion;
+//        this.aprobacionTienda = aprobacion;
+//        this.fechaAprobacionTienda = fechaaprobacion;
+//        this.idAdminTF = idadmin;
+//        this.identificacionCVF = idcvf;
+//        this.idFotoPredeterminadaTF = idfotop;
+//    }
+
 
     public int getIdTienda() {
         return idTienda;
@@ -89,11 +102,11 @@ public class Tienda {
         this.direccionTienda = direccionTienda;
     }
 
-    public String getFotoTienda() {
+    public byte[] getFotoTienda() {
         return fotoTienda;
     }
 
-    public void setFotoTienda(String fotoTienda) {
+    public void setFotoTienda(byte[] fotoTienda) {
         this.fotoTienda = fotoTienda;
     }
 
@@ -157,7 +170,7 @@ public class Tienda {
         int idTiendat = 0;
         String nomTiendat = "";
         String direccionTiendat = "";
-        String fotoTiendat = "";
+        byte[] fotoTiendat=null;
         String descripcionTiendat = "";
         int aprobacionTiendat = 0;
         String fechaAprobacionTiendat = "";
@@ -181,11 +194,11 @@ public class Tienda {
                     }
                     
                     try {
-                        fotoTiendat = rs.getString("fotoTienda");
+                        fotoTiendat = rs.getBytes("fotoTienda");
                     } catch (NullPointerException n) {
                     }
-                    if (fotoTiendat == null) {
-                        fotoTiendat = "";
+                    if(fotoTiendat == null){
+                        fotoTiendat = null;
                     }
                     
                     descripcionTiendat = rs.getString("descripcionTienda");
@@ -236,12 +249,10 @@ public class Tienda {
         try {
             if (objb.crearConexion()) {
                 objb.getConexion().setAutoCommit(false);
-                File file = new File(objT.getFotoTienda());
-                fis = new FileInputStream(file);
                 ps = objb.getConexion().prepareStatement(sql);
                 ps.setString(1, objT.getNomTienda());
                 ps.setString(2, objT.getDireccionTienda());
-                ps.setBinaryStream(3, fis, (int) file.length());
+                ps.setBytes(3, objT.getFotoTienda());
                 ps.setString(4, objT.getDescripcionTienda());
                 ps.setInt(5, objT.getAprobacionTienda());
                 ps.setString(6, objT.getFechaAprobacionTienda());

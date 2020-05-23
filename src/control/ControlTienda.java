@@ -22,12 +22,18 @@ public class ControlTienda {
         LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
         return listac;
     }
+    public LinkedList<Tienda> consultarTiendas2(String id) {
+        String sql = "SELECT * FROM tiendas WHERE idTienda = '"+ id +"';";
+        Tienda objclasi = new Tienda();
+        LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
+        return listac;
+    }
 
     public boolean insertarTiendas(Tienda objT) {
         boolean t = false;
         Tienda objciudad = new Tienda();
         String sql = "";
-        sql = "INSERT INTO tiendas (idTienda,nomTienda,direccionTienda,fotoTienda,descripcionTienda,aprobacionTienda, fechaAprobacionTienda, idAdminTF, identificacionCVF, idFotoPredeterminadaTF) VALUES(?,?,?,?,?,?,?,?,?,?);";
+        sql = "INSERT INTO tiendas (nomTienda,direccionTienda,fotoTienda,descripcionTienda,aprobacionTienda, fechaAprobacionTienda, idAdminTF, identificacionCVF, idFotoPredeterminadaTF) VALUES(?,?,?,?,?,?,?,?,?);";
         t = objciudad.insertarTiendas(objT, sql);
         return t;
 
@@ -42,6 +48,14 @@ public class ControlTienda {
         return t;
     }
     
-    
+    public boolean actualizarTienda(String nombre, String direccion, String descripcion, int aprobacion, String fecha, int idadmin, String idcliente, int idfoto, int idtienda) {
+
+        boolean t = false;
+        ClienteVendedor getobjeto = new ClienteVendedor();
+        String sql = "UPDATE tiendas SET nomTienda = '"+ nombre +"', direccionTienda = '"+ direccion +"', descripcionTienda = '"+ descripcion +"', aprobacionTienda = '"+ aprobacion +"', fechaAprobacionTienda = '"+ fecha +"', idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcliente +"', idFotoPredeterminadaTF = '"+ idfoto +"' WHERE (idTienda = '"+ idtienda +"');";
+        t = getobjeto.actualizarTienda(sql);
+
+        return t;
+    }
 
 }

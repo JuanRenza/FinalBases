@@ -248,7 +248,7 @@ public class ClienteVendedor {
         return t;
     }
 
-    public boolean consultarCliente(String sql) {
+    public boolean actualizarClienteV(String sql) {
         boolean t = false;
         BaseDatos objCon = new BaseDatos();
 
@@ -265,5 +265,24 @@ public class ClienteVendedor {
 
         return t;
     }
+
+    public boolean actualizarTienda(String sql) {
+        boolean t = false;
+        BaseDatos objCon = new BaseDatos();
+
+        if (objCon.crearConexion()) {
+            try {
+                Statement sentencia = objCon.getConexion().createStatement();
+                sentencia.executeUpdate(sql);
+                t = true;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                t = false;
+            }
+        }
+
+        return t;
+    }
+
 
 }

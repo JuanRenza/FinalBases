@@ -20,7 +20,7 @@ import java.util.logging.Logger;
  * @author Nicolas Alexander
  */
 public class Administrador {
-    
+
     private int idAdmin;
     private String nom1Admin;
     private String nom2Admin;
@@ -30,13 +30,16 @@ public class Administrador {
     private String contraseñaAdmin;
     private String direccionAdmin;
     private String fotoAdmin;
+
+    public Administrador() {
+    }
     
     public Administrador(String nom1Admin1, String nom2Admin1, String ape1Admin1, String ape2Admin1, String direccionAdmin1, String contraseñaAdmin1, String fotoAdmin1) {
     }
 
     public Administrador(int idAdministrador, String nom1Admin, String nom2Admin, String ape1Admin, String ape2Admin, String correoAdmin,
             String contraseñaAdmin, String direccionAdmin, String fotoAdmin) {
-        
+
         this.idAdmin = idAdministrador;
         this.nom1Admin = nom1Admin;
         this.nom2Admin = nom2Admin;
@@ -46,8 +49,7 @@ public class Administrador {
         this.direccionAdmin = direccionAdmin;
         this.contraseñaAdmin = contraseñaAdmin;
         this.fotoAdmin = fotoAdmin;
-      
-               
+
     }
 
     public Administrador(String nom1Admin, String nom2Admin, String ape1Admin, String ape2Admin, String correoAdmin, String contraseñaAdmin, String direccionAdmin, String fotoAdmin) {
@@ -61,12 +63,6 @@ public class Administrador {
         this.fotoAdmin = fotoAdmin;
     }
 
-    public Administrador() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
-
-    
-    
     public int getIdAdmin() {
         return idAdmin;
     }
@@ -143,11 +139,11 @@ public class Administrador {
     public String toString() {
         return "Administrador{" + "idAdmin=" + idAdmin + ", nom1Admin=" + nom1Admin + ", nom2Admin=" + nom2Admin + ", ape1Admin=" + ape1Admin + ", ape2Admin=" + ape2Admin + ", correoAdmin=" + correoAdmin + ", contrase\u00f1aAdmin=" + contraseñaAdmin + ", direccionAdmin=" + direccionAdmin + ", fotoAdmin=" + fotoAdmin + '}';
     }
-    
-     public LinkedList<Administrador> consultarAdministrador(String sql) {
+
+    public LinkedList<Administrador> consultarAdministrador(String sql) {
         LinkedList<Administrador> lc = new LinkedList<>();
         BaseDatos objb = new BaseDatos();
-        
+
         String nom1Admin = "";
         String nom2Admin = "";
         String ape1Admin = "";
@@ -156,31 +152,30 @@ public class Administrador {
         String direccionAdmin = "";
         String contraseñaAdmin = "";
         String fotoAdmin = "";
-        
 
         ResultSet rs = null;
         if (objb.crearConexion()) {
             try {
                 rs = objb.getSt().executeQuery(sql);
                 while (rs.next()) {
-                    
+
                     nom1Admin = rs.getString("nom1Admin");
                     nom2Admin = rs.getString("nom2Admin");
                     ape1Admin = rs.getString("ape1Admin");
                     ape2Admin = rs.getString("ape2Admin");
                     direccionAdmin = rs.getString("direccion");
-                    contraseñaAdmin =rs.getString("contraseña");
-                    fotoAdmin= rs.getString("fotoAdmin");
-                    lc.add(new Administrador( nom1Admin, nom2Admin, ape1Admin, ape2Admin,  direccionAdmin, contraseñaAdmin, fotoAdmin));
+                    contraseñaAdmin = rs.getString("contraseña");
+                    fotoAdmin = rs.getString("fotoAdmin");
+                    lc.add(new Administrador(nom1Admin, nom2Admin, ape1Admin, ape2Admin, direccionAdmin, contraseñaAdmin, fotoAdmin));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
             }
         }
         return lc;
-     }
-     
-      public boolean insertarAdministrador(Administrador objT, String sql) {
+    }
+
+    public boolean insertarAdministrador(Administrador objT, String sql) {
         boolean t = false;
         BaseDatos objb = new BaseDatos();
         FileInputStream fis = null;
@@ -189,7 +184,7 @@ public class Administrador {
             if (objb.crearConexion()) {
                 objb.getConexion().setAutoCommit(false);
                 ps = objb.getConexion().prepareStatement(sql);
-               
+
                 ps.setString(1, objT.getNom1Admin());
                 ps.setString(2, objT.getNom2Admin());
                 ps.setString(3, objT.getApe1Admin());
@@ -209,7 +204,8 @@ public class Administrador {
 
         return t;
     }
-      public boolean eliminarAdministrador(String sql) {
+
+    public boolean eliminarAdministrador(String sql) {
         boolean t = false;
         BaseDatos objCon = new BaseDatos();
 
@@ -227,6 +223,3 @@ public class Administrador {
         return t;
     }
 }
-    
-                   
-

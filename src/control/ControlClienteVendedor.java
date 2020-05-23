@@ -50,12 +50,12 @@ public class ControlClienteVendedor {
         return t;
     }
     
-    public boolean consultarClienteV(String n1, String n2, String a1, String a2, String fecha, String dire, String idCliente) {
+    public boolean actualizarClientesV(String n1, String n2, String a1, String a2, String fecha, String dire, String idCliente) {
 
         boolean t = false;
         ClienteVendedor getobjeto = new ClienteVendedor();
         String sql = "UPDATE clientesvendedor SET nom1Cliente = '"+ n1 +"', nom2Cliente = '"+ n2 +"', ape1Cliente = '"+ a1 +"', ape2Cliente = '"+ a2 +"', fechaNac = '"+ fecha +"', direccion = '"+ dire +"' WHERE (`identificacionC` = '"+ idCliente +"');";
-        t = getobjeto.consultarCliente(sql);
+        t = getobjeto.actualizarClienteV(sql);
 
         return t;
     }
