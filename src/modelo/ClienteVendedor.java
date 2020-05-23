@@ -284,5 +284,23 @@ public class ClienteVendedor {
         return t;
     }
 
+    public boolean consultaFecha(String sql) {
+        boolean t = false;
+        BaseDatos objCon = new BaseDatos();
+
+        if (objCon.crearConexion()) {
+            try {
+                Statement sentencia = objCon.getConexion().createStatement();
+                sentencia.executeUpdate(sql);
+                t = true;
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+                t = false;
+            }
+        }
+
+        return t;
+    }
+
 
 }

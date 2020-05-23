@@ -60,4 +60,10 @@ public class ControlClienteVendedor {
         return t;
     }
     
+    public LinkedList<ClienteVendedor> consultarFechas(String fecha1, String fecha2){
+        String sql = "SELECT * FROM clientesvendedor WHERE fechaNac BETWEEN '"+ fecha1 +"' AND '"+ fecha2 +"';";
+        ClienteVendedor objclasi = new ClienteVendedor();
+        LinkedList<ClienteVendedor> listac = objclasi.consultarClienteV(sql);
+        return listac;
+    }
 }

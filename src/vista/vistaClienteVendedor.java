@@ -264,8 +264,10 @@ public class vistaClienteVendedor extends javax.swing.JFrame {
                 jTextField6.setText(fila[5].toString());
                 jTextField7.setText(fila[6].toString());
             }
+            
 
         }
+       
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
