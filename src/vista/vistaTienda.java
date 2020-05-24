@@ -35,7 +35,7 @@ public class vistaTienda extends javax.swing.JFrame {
     LinkedList<Administrador> listaadmin;
     LinkedList<ClienteVendedor> listacliente;
     LinkedList<FotoPredeterminada> listafoto;
-    
+    boolean f=false;
     /**
      * Creates new form vistaTienda
      */
@@ -48,6 +48,8 @@ public class vistaTienda extends javax.swing.JFrame {
         jTextField11.setEnabled(false);
         jTextField4.setEditable(false);
         jTextField4.setEnabled(false);
+        jTextField6.setEditable(false);
+        jTextField6.setEnabled(false);
     }
 
     /**
@@ -467,7 +469,7 @@ public class vistaTienda extends javax.swing.JFrame {
                 fila[0] = listaTiendas2.get(i).getIdTienda();
                 fila[1] = listaTiendas2.get(i).getNomTienda();
                 fila[2] = listaTiendas2.get(i).getDireccionTienda();
-                fila[3] = listaTiendas2.get(i).getFotoTienda();
+//                fila[3] = listaTiendas2.get(i).getFotoTienda();
                 fila[4] = listaTiendas2.get(i).getDescripcionTienda();
                 fila[5] = listaTiendas2.get(i).getAprobacionTienda();
                 fila[6] = listaTiendas2.get(i).getFechaAprobacionTienda();
@@ -477,7 +479,7 @@ public class vistaTienda extends javax.swing.JFrame {
 
                 jTextField2.setText(fila[1].toString());
                 jTextField3.setText(fila[2].toString());
-                jTextField4.setText(fila[3].toString());
+//                jTextField4.setText(fila[3].toString());
                 jTextField5.setText(fila[4].toString());
                 jTextField6.setText(fila[5].toString());
                 jTextField8.setText(fila[6].toString());
@@ -497,7 +499,12 @@ public class vistaTienda extends javax.swing.JFrame {
 //        String identificacion = jTextField1.getText();
         String nombre = jTextField2.getText();
         String direccion = jTextField3.getText();
-        File ruta = new File(jTextField4.getText());
+        File ruta=null;
+        if(jTextField4.getText().isEmpty()){
+            ruta=null;
+        }else{
+            ruta = new File(jTextField4.getText());
+        }
         String descripcion = jTextField5.getText();
         String aprobacion1=jComboBox4.getSelectedItem().toString();
         int aprobacion;
@@ -571,6 +578,7 @@ public class vistaTienda extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        f=true;
         JFileChooser j = new JFileChooser();
         FileNameExtensionFilter fil = new FileNameExtensionFilter("JPG, PNG & GIF","jpg","png","gif");
         j.setFileFilter(fil);

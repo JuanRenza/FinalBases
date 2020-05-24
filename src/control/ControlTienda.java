@@ -57,5 +57,19 @@ public class ControlTienda {
 
         return t;
     }
+    
+    public LinkedList<Tienda> consultarTiendaApro(){
+        String sql = "SELECT * FROM tiendas where aprobacionTienda = 0;";
+        Tienda objclasi = new Tienda();
+        LinkedList<Tienda> listac = objclasi.consultarTiendasApro(sql);
+        return listac;
+    }
+
+    public LinkedList<Tienda> consultarTiendaNoApro() {
+        String sql = "SELECT * FROM tiendas where aprobacionTienda = 1;";
+        Tienda objclasi = new Tienda();
+        LinkedList<Tienda> listac = objclasi.consultarTiendasApro(sql);
+        return listac;
+    }
 
 }

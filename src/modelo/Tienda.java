@@ -290,4 +290,81 @@ public class Tienda {
         return t;
     }
 
+    public LinkedList<Tienda> consultarTiendasApro(String sql) {
+        ResultSet rs = null;
+        LinkedList<Tienda> lc = new LinkedList<>();
+        BaseDatos objb = new BaseDatos();
+        int idTiendat = 0;
+        String nomTiendat = "";
+        String direccionTiendat = "";
+        byte[] fotoTiendat=null;
+        String descripcionTiendat = "";
+        int aprobacionTiendat = 0;
+        String fechaAprobacionTiendat = "";
+        int idAdminTFt = 0;
+        String identificacionCVFt = "";
+        int idFotoPredeterminadaTFt = 0;
+
+        if (objb.crearConexion()) {
+            try {
+                Statement sentencia = objb.getConexion().createStatement();
+                rs = sentencia.executeQuery(sql);
+                while (rs.next()) {
+                    idTiendat = rs.getInt("idTienda");
+                    nomTiendat = rs.getString("nomTienda");
+                    try {
+                        direccionTiendat = rs.getString("direccionTienda");
+                    } catch (NullPointerException n) {
+                    }
+                    if (direccionTiendat == null) {
+                        direccionTiendat = "";
+                    }
+                    
+                    try {
+                        fotoTiendat = rs.getBytes("fotoTienda");
+                    } catch (NullPointerException n) {
+                    }
+                    if(fotoTiendat == null){
+                        fotoTiendat = null;
+                    }
+                    
+                    descripcionTiendat = rs.getString("descripcionTienda");
+                    
+                    try {
+                        aprobacionTiendat = rs.getInt("aprobacionTienda");
+                    } catch (NullPointerException n) {
+                    }
+                    if (aprobacionTiendat == 0) {
+                        aprobacionTiendat = 0;
+                    }
+                    
+                    try {
+                        fechaAprobacionTiendat = rs.getString("fechaAprobacionTienda");
+                    } catch (NullPointerException n) {
+                    }
+                    if (fechaAprobacionTiendat == null) {
+                        fechaAprobacionTiendat = "";
+                    }
+                    
+                    idAdminTFt = rs.getInt("idAdminTF");
+                    identificacionCVFt = rs.getString("identificacionCVF");
+                    
+                    try {
+                        idFotoPredeterminadaTFt = rs.getInt("idFotoPredeterminadaTF");
+                    } catch (NullPointerException n) {
+                    }
+                    if (idFotoPredeterminadaTFt == 0) {
+                        idFotoPredeterminadaTFt = 0;
+                    }
+
+                    lc.add(new Tienda(idTiendat, nomTiendat, direccionTiendat, fotoTiendat, descripcionTiendat, aprobacionTiendat, fechaAprobacionTiendat, idAdminTFt, identificacionCVFt, idFotoPredeterminadaTFt));
+                }
+            } catch (SQLException ex) {
+                ex.printStackTrace();
+
+            }
+        }
+        return lc;
+    }
+
 }

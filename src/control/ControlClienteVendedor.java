@@ -66,4 +66,6 @@ public class ControlClienteVendedor {
         LinkedList<ClienteVendedor> listac = objclasi.consultarClienteV(sql);
         return listac;
     }
+    
+    
 }
