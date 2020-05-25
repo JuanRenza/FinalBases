@@ -21,7 +21,7 @@ public class ControlTelefonosAdmin {
         TelefonosAdmin objc=new TelefonosAdmin();
         for (int i = 0; i < listaTelefonos.size(); i++) {
             TelefonosAdmin get = listaTelefonos.get(i);
-            String sql="insert into TelefonosAdmin(numTelefono) value('"+get.getNumTelefono()+"');";
+            String sql="insert into telefonosadmin(numTelefono) value('"+get.getNumTelefono()+"');";
             
             t=objc.insertarTelefonosAdmin(sql);
         }
@@ -34,7 +34,7 @@ public class ControlTelefonosAdmin {
 
         boolean t = false;
         TelefonosAdmin getobjeto = new TelefonosAdmin();
-        String sql = "DELETE FROM TelefonosAdmin WHERE(numerotelefono = '" + listaTA+ "');";
+        String sql = "DELETE FROM telefonosadmin WHERE(numTelefono = '" + listaTA+ "');";
         t = getobjeto.eliminarTelefonosAdmin(sql);
 
         return t;

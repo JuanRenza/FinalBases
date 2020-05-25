@@ -36,7 +36,7 @@ public class ControlAdministrador {
 
         boolean t = false;
         Administrador getobjeto = new Administrador();
-        String sql = "DELETE FROM administrador WHERE(correoAdmin = '" + listaA + "');";
+        String sql = "DELETE FROM administradores WHERE(correoAdmin = '" + listaA + "');";
         t = getobjeto.eliminarAdministrador(sql);
 
         return t;

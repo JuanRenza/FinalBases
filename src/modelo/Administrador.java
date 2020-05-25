@@ -137,13 +137,13 @@ public class Administrador {
 
     @Override
     public String toString() {
-        return "Administrador{" + "idAdmin=" + idAdmin + ", nom1Admin=" + nom1Admin + ", nom2Admin=" + nom2Admin + ", ape1Admin=" + ape1Admin + ", ape2Admin=" + ape2Admin + ", correoAdmin=" + correoAdmin + ", contrase\u00f1aAdmin=" + contraseñaAdmin + ", direccionAdmin=" + direccionAdmin + ", fotoAdmin=" + fotoAdmin + '}';
+        return "Administrador{" + "idAdmin=" + idAdmin + ", nom1Admin=" + nom1Admin + ", nom2Admin=" + nom2Admin + ", ape1Admin=" + ape1Admin + ", ape2Admin=" + ape2Admin + ", correoAdmin=" + correoAdmin + ", contraseñaAdmin=" + contraseñaAdmin + ", direccionAdmin=" + direccionAdmin + ", fotoAdmin=" + fotoAdmin + '}';
     }
 
     public LinkedList<Administrador> consultarAdministrador(String sql) {
         LinkedList<Administrador> lc = new LinkedList<>();
         BaseDatos objb = new BaseDatos();
-
+        
         String nom1Admin = "";
         String nom2Admin = "";
         String ape1Admin = "";
@@ -154,19 +154,31 @@ public class Administrador {
         String fotoAdmin = "";
 
         ResultSet rs = null;
-        if (objb.crearConexion()) {
+          if (objb.crearConexion()) {
             try {
-                rs = objb.getSt().executeQuery(sql);
-                while (rs.next()) {
-
-                    nom1Admin = rs.getString("nom1Admin");
-                    nom2Admin = rs.getString("nom2Admin");
-                    ape1Admin = rs.getString("ape1Admin");
-                    ape2Admin = rs.getString("ape2Admin");
-                    direccionAdmin = rs.getString("direccion");
-                    contraseñaAdmin = rs.getString("contraseña");
+                Statement sentencia = objb.getConexion().createStatement();
+                rs = sentencia.executeQuery(sql);
+                 while (rs.next()) {
+                     nom1Admin = rs.getString("nom1Admin");
                     fotoAdmin = rs.getString("fotoAdmin");
-                    lc.add(new Administrador(nom1Admin, nom2Admin, ape1Admin, ape2Admin, direccionAdmin, contraseñaAdmin, fotoAdmin));
+                    try {
+                        nom2Admin = rs.getString("nom2Admin");
+                    } catch (NullPointerException n) { }
+                    if(nom2Admin==null){
+                        nom2Admin = "";
+                    }
+                    
+                    ape1Admin = rs.getString("ape1Admin");
+                     try {
+                        ape2Admin = rs.getString("ape2Admin");
+                    } catch (NullPointerException n) { }
+                    if(ape2Admin==null){
+                        ape2Admin = "";
+                    }
+                    correoAdmin = rs.getString("correoAdmin");
+                    direccionAdmin = rs.getString("direccionAdmin");
+                    contraseñaAdmin = rs.getString("contraseñaAdmin");
+                    lc.add(new Administrador(nom1Admin, nom2Admin, ape1Admin, ape2Admin, correoAdmin,direccionAdmin, contraseñaAdmin, fotoAdmin));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
@@ -189,10 +201,11 @@ public class Administrador {
                 ps.setString(2, objT.getNom2Admin());
                 ps.setString(3, objT.getApe1Admin());
                 ps.setString(4, objT.getApe2Admin());
-                ps.setString(5, objT.getDireccionAdmin());
-                ps.setString(6, objT.getContraseñaAdmin());
-                ps.setString(7, objT.getFotoAdmin());
-
+                ps.setString(5, objT.getCorreoAdmin());
+                ps.setString(6, objT.getDireccionAdmin());
+                ps.setString(7, objT.getContraseñaAdmin());
+                ps.setString(8, objT.getFotoAdmin());
+             
                 ps.executeUpdate();
                 objb.getConexion().commit();
                 t = true;
