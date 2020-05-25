@@ -99,5 +99,14 @@ public class ControlTienda {
         return t;
     }
 
+    public boolean actualizarTienda4(String nombre, String direccion, String descripcion, int idadmin, String idcvf, int idfotop, int id) {
+        boolean t = false;
+        Tienda getobjeto = new Tienda();
+        String sql = "UPDATE tiendas SET nomTienda = '"+ nombre +"', direccionTienda = '"+ direccion +"', descripcionTienda = '"+ descripcion +"',  idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcvf +"', idFotoPredeterminadaTF = '"+ idfotop +"' WHERE (idTienda = '"+ id +"');";
+        t = getobjeto.actualizarTienda(sql);
+
+        return t;
+    }
+
 
 }
