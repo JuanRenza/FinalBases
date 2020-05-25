@@ -284,9 +284,9 @@ public class vistaClienteVendedor extends javax.swing.JFrame {
          ControlClienteVendedor objcp=new ControlClienteVendedor();
          boolean t=objcp.insertarClientesV(objCliente);
             if(t==true){
-                JOptionPane.showMessageDialog(rootPane, "Insertado con exito");
+                JOptionPane.showMessageDialog(rootPane, "Modificado con exito");
             }  else{
-                JOptionPane.showMessageDialog(rootPane, "No Insertado");
+                JOptionPane.showMessageDialog(rootPane, "No modificado");
             }  
         
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -307,7 +307,7 @@ public class vistaClienteVendedor extends javax.swing.JFrame {
         if (t == true) {
             JOptionPane.showMessageDialog(rootPane, "Insertado con exito");
         } else {
-            JOptionPane.showMessageDialog(rootPane, "No Insertado");
+            JOptionPane.showMessageDialog(rootPane, "No insertado");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

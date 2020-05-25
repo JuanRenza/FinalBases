@@ -48,28 +48,56 @@ public class ControlTienda {
         return t;
     }
     
-    public boolean actualizarTienda(String nombre, String direccion, String descripcion, int aprobacion, String fecha, int idadmin, String idcliente, int idfoto, int idtienda) {
+    public boolean actualizarTienda1(String nombre, String direccion, String descripcion, int aprobacion, String fecha, int idadmin, String idcliente, int idfoto, int idtienda) {
 
         boolean t = false;
-        ClienteVendedor getobjeto = new ClienteVendedor();
+        Tienda getobjeto = new Tienda();
         String sql = "UPDATE tiendas SET nomTienda = '"+ nombre +"', direccionTienda = '"+ direccion +"', descripcionTienda = '"+ descripcion +"', aprobacionTienda = '"+ aprobacion +"', fechaAprobacionTienda = '"+ fecha +"', idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcliente +"', idFotoPredeterminadaTF = '"+ idfoto +"' WHERE (idTienda = '"+ idtienda +"');";
         t = getobjeto.actualizarTienda(sql);
 
         return t;
     }
-    
-    public LinkedList<Tienda> consultarTiendaApro(){
-        String sql = "SELECT * FROM tiendas where aprobacionTienda = 0;";
+
+    public boolean actualizarTienda2(int aprobacion, String fechaaprobacion, int idadmin, String idcvf, int idfotop, int id) {
+        boolean t = false;
+        Tienda getobjeto = new Tienda();
+        String sql = "UPDATE tiendas SET aprobacionTienda = '"+ aprobacion +"', fechaAprobacionTienda = '"+ fechaaprobacion +"', idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcvf +"', idFotoPredeterminadaTF = '"+ idfotop +"' WHERE (idTienda = '"+ id +"');";
+        t = getobjeto.actualizarTienda(sql);
+
+        return t;
+    }
+
+    public LinkedList<Tienda> consultarTiendaApro() {
+        String sql = "select * from tiendas where aprobacionTienda = 1;";
         Tienda objclasi = new Tienda();
-        LinkedList<Tienda> listac = objclasi.consultarTiendasApro(sql);
+        LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
         return listac;
     }
 
     public LinkedList<Tienda> consultarTiendaNoApro() {
-        String sql = "SELECT * FROM tiendas where aprobacionTienda = 1;";
+        String sql = "select * from tiendas where aprobacionTienda = 0;";
         Tienda objclasi = new Tienda();
-        LinkedList<Tienda> listac = objclasi.consultarTiendasApro(sql);
+        LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
         return listac;
     }
+
+    public boolean aprobarTienda(int aprobacion, String id) {
+        boolean t = false;
+        Tienda getobjeto = new Tienda();
+        String sql = "UPDATE tiendas SET aprobacionTienda = '"+ aprobacion +"' WHERE (idTienda = '"+ id +"');";
+        t = getobjeto.actualizarTienda(sql);
+
+        return t;
+    }
+
+    public boolean actualizarTienda3(String fechaaprobacion, int idadmin, String idcvf, int idfotop, int id) {
+        boolean t = false;
+        Tienda getobjeto = new Tienda();
+        String sql = "UPDATE tiendas SET fechaAprobacionTienda = '"+ fechaaprobacion +"', idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcvf +"', idFotoPredeterminadaTF = '"+ idfotop +"' WHERE (idTienda = '"+ id +"');";
+        t = getobjeto.actualizarTienda(sql);
+
+        return t;
+    }
+
 
 }
