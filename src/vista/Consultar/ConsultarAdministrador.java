@@ -5,6 +5,11 @@
  */
 package vista.Consultar;
 
+import control.ControlAdministrador;
+import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
+import modelo.Administrador;
+
 /**
  *
  * @author Nicolas Alexander
@@ -14,8 +19,10 @@ public class ConsultarAdministrador extends javax.swing.JFrame {
     /**
      * Creates new form ConsultarAdministrador
      */
+    LinkedList<Administrador> listaAdmin;
     public ConsultarAdministrador() {
         initComponents();
+        listaAdmin = new LinkedList<>();
     }
 
     /**
@@ -27,21 +34,116 @@ public class ConsultarAdministrador extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+        jTextField1 = new javax.swing.JTextField();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton1 = new javax.swing.JButton();
+
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+
+        jLabel1.setFont(new java.awt.Font("Yu Gothic", 0, 18)); // NOI18N
+        jLabel1.setText("CONSULTAR ADMINISTRADOR");
+
+        jLabel2.setFont(new java.awt.Font("Yu Gothic", 0, 12)); // NOI18N
+        jLabel2.setText("ID ADMIN");
+
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null, null}
+            },
+            new String [] {
+                "Id Admin", "primer nombre", "segundo nombre", "primer apellido", "segundo apellido", "correo", "contraseña", "direccion"
+            }
+        ));
+        jScrollPane1.setViewportView(jTable1);
+
+        jButton1.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
+        jButton1.setText("CONSULTAR");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 624, Short.MAX_VALUE)
+            .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 624, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addGap(47, 47, 47)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(jButton1)
+                    .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(jLabel1)
+                        .addGroup(layout.createSequentialGroup()
+                            .addComponent(jLabel2)
+                            .addGap(93, 93, 93)
+                            .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, 243, javax.swing.GroupLayout.PREFERRED_SIZE))))
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 423, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jLabel1)
+                .addGap(60, 60, 60)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jLabel2)
+                    .addComponent(jTextField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(jButton1)
+                .addGap(28, 28, 28)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 135, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        
+        String criterioBusqueda = jTextField1.getText();
+        ControlAdministrador objcc = new ControlAdministrador();
+        int ncol;
+        Object[] fila;
+        if (criterioBusqueda.equals("")) {
+            listaAdmin = objcc.consultarAdministrador();
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            this.jTable1.setModel(modelo);
+
+            modelo.addColumn("Id Admin");
+            modelo.addColumn("primer nombre");
+            modelo.addColumn("segundo nombre");
+            modelo.addColumn("primer apellido");
+            modelo.addColumn("segundo apellido");
+            modelo.addColumn("correo");
+            modelo.addColumn("direccion");
+            modelo.addColumn("contraseña");
+            ncol = modelo.getColumnCount();
+
+            //Object[] fila = new Object[ncol];
+            for (int i = 0; i < listaAdmin.size(); i++) {
+                fila = new Object[ncol];
+                fila[0] = listaAdmin.get(i).getIdAdmin();
+                fila[1] = listaAdmin.get(i).getNom1Admin();
+                fila[2] = listaAdmin.get(i).getNom2Admin();
+                fila[3] = listaAdmin.get(i).getApe1Admin();
+                fila[4] = listaAdmin.get(i).getApe2Admin();
+                fila[5] = listaAdmin.get(i).getCorreoAdmin();
+                fila[6] = listaAdmin.get(i).getDireccionAdmin();
+                fila[7] = listaAdmin.get(i).getContraseñaAdmin();
+                modelo.addRow(fila);
+            }
+
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -79,5 +181,11 @@ public class ConsultarAdministrador extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
+    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 }
