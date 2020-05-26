@@ -186,42 +186,42 @@ public class InsertarPedido extends javax.swing.JFrame {
 
     private void btnInsertarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnInsertarActionPerformed
 
-        Producto p = new Producto();
-        p.setNombreProducto(nomProducto.getText());
-        p.setReferenciaProducto(refProducto.getText());
-        p.setValorProducto(Double.parseDouble(valProducto.getText()));
-        p.setDescripcionProducto(descProducto.getText());
-        p.setIdTiendaPF(Integer.parseInt(tienProducto.getText()));
-
-        int idTipoPF = 0;
-        for (int i = 0; i < cblTipoProducto.size(); i++) {
-            TipoProducto get = cblTipoProducto.get(i);
-            String tipoProducto = String.valueOf(cbTipoP.getSelectedItem());
-            if(tipoProducto.equals(get.getTipoProducto())){
-                idTipoPF = get.getIdTipo();
-                p.setIdTipoPF(idTipoPF);
-            }
-        }
-
-        File rutaFotoProducto = new File(txtRuta.getText());
-
-        try{
-            byte[] foto = new byte[(int) rutaFotoProducto.length()];
-            InputStream input = new FileInputStream(rutaFotoProducto);
-            input.read(foto);
-            p.setFotoProducto(foto);
-        }catch(Exception ex){
-            p.setFotoProducto(null);
-        }
-
-        ControlProducto objCp = new ControlProducto();
-        boolean t = objCp.insertarProducto(p);
-
-        if(t==true){
-            JOptionPane.showMessageDialog(rootPane, "Se insertó el nuevo producto");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "No se insertó el nuevo producto");
-        }
+//        Producto p = new Producto();
+//        p.setNombreProducto(nomProducto.getText());
+//        p.setReferenciaProducto(refProducto.getText());
+//        p.setValorProducto(Double.parseDouble(valProducto.getText()));
+//        p.setDescripcionProducto(descProducto.getText());
+//        p.setIdTiendaPF(Integer.parseInt(tienProducto.getText()));
+//
+//        int idTipoPF = 0;
+//        for (int i = 0; i < cblTipoProducto.size(); i++) {
+//            TipoProducto get = cblTipoProducto.get(i);
+//            String tipoProducto = String.valueOf(cbTipoP.getSelectedItem());
+//            if(tipoProducto.equals(get.getTipoProducto())){
+//                idTipoPF = get.getIdTipo();
+//                p.setIdTipoPF(idTipoPF);
+//            }
+//        }
+//
+//        File rutaFotoProducto = new File(txtRuta.getText());
+//
+//        try{
+//            byte[] foto = new byte[(int) rutaFotoProducto.length()];
+//            InputStream input = new FileInputStream(rutaFotoProducto);
+//            input.read(foto);
+//            p.setFotoProducto(foto);
+//        }catch(Exception ex){
+//            p.setFotoProducto(null);
+//        }
+//
+//        ControlProducto objCp = new ControlProducto();
+//        boolean t = objCp.insertarProducto(p);
+//
+//        if(t==true){
+//            JOptionPane.showMessageDialog(rootPane, "Se insertó el nuevo producto");
+//        }else{
+//            JOptionPane.showMessageDialog(rootPane, "No se insertó el nuevo producto");
+//        }
 
     }//GEN-LAST:event_btnInsertarActionPerformed
 

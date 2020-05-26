@@ -5,6 +5,11 @@
  */
 package vista.Consultar;
 
+import control.ControlPedidos;
+import java.util.LinkedList;
+import javax.swing.table.DefaultTableModel;
+import modelo.Pedido;
+
 /**
  *
  * @author joseb
@@ -14,10 +19,13 @@ public class ConsultarPedido extends javax.swing.JFrame {
     /**
      * Creates new form ConsultarPedido
      */
+    LinkedList<Pedido> li;
     public ConsultarPedido() {
         initComponents();
+        li = new LinkedList<>();
     }
-
+  
+   
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -112,40 +120,38 @@ public class ConsultarPedido extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
-//        String f1=jTextField1.getText();
-//        String f2=jTextField2.getText();
-//        ControlClienteVendedor cl = new ControlClienteVendedor();
-//        int ncol;
-//        Object[] fila;
-//        if (f1 != null && f2 != null) {
-//            li = cl.consultarFechas(f1, f2);
-//
-//            DefaultTableModel modelo = new DefaultTableModel();
-//            this.jTable1.setModel(modelo);
-//
-//            modelo.addColumn("Identificacion");
-//            modelo.addColumn("Primer Nombre");
-//            modelo.addColumn("Segundo Nombre");
-//            modelo.addColumn("Primer Apellido");
-//            modelo.addColumn("Segundo Apellido");
-//            modelo.addColumn("Fecha Nacimiento");
-//            modelo.addColumn("Direccion");
-//            ncol = modelo.getColumnCount();
-//
-//            //Object[] fila = new Object[ncol];
-//            for (int i = 0; i < li.size(); i++) {
-//                fila = new Object[ncol];
-//                fila[0] = li.get(i).getIdentificacionC();
-//                fila[1] = li.get(i).getNom1Cliente();
-//                fila[2] = li.get(i).getNom2Cliente();
-//                fila[3] = li.get(i).getApe1Cliente();
-//                fila[4] = li.get(i).getApe2Cliente();
-//                fila[5] = li.get(i).getFechaNac();
-//                fila[6] = li.get(i).getDireccion();
-//                modelo.addRow(fila);
-//            }
-//        }
-//
+        String f1=jTextField1.getText();
+        String f2=jTextField2.getText();
+        ControlPedidos cl = new ControlPedidos();
+        int ncol;
+        Object[] fila;
+        if (f1 != null && f2 != null) {
+            li = cl.consultarFechas(f1, f2);
+
+            DefaultTableModel modelo = new DefaultTableModel();
+            this.jTable1.setModel(modelo);
+
+            modelo.addColumn("Id");
+            modelo.addColumn("Valor Total");
+            modelo.addColumn("Fecha Pedido");
+            modelo.addColumn("Estado");
+           
+           
+            ncol = modelo.getColumnCount();
+
+            //Object[] fila = new Object[ncol];
+            for (int i = 0; i < li.size(); i++) {
+                fila = new Object[ncol];
+                fila[0] = li.get(i).getIdPedido();
+                fila[1] = li.get(i).getValorTotalPedido();
+                fila[2] = li.get(i).getFechaPedido();
+                fila[3] = li.get(i).getEstadoVenta();
+                
+                
+                modelo.addRow(fila);
+            }
+        }
+
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**

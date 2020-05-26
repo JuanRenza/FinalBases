@@ -5,6 +5,9 @@
  */
 package vista.Eliminar;
 
+import control.ControlPedidos;
+import javax.swing.JOptionPane;
+
 /**
  *
  * @author joseb
@@ -88,8 +91,8 @@ public class EliminarPedido extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         String idProducto =jTextField1.getText();
-        ControlProducto cp =new ControlProducto();
-        boolean t = cp.eliminarTipoProducto(idProducto);
+        ControlPedidos cp =new ControlPedidos();
+        boolean t = cp.eliminarPedido(idProducto);
 
         if(t==true){
             JOptionPane.showMessageDialog(rootPane, "Se elimino el  producto");
