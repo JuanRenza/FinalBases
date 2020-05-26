@@ -95,9 +95,9 @@ public class EliminarPedido extends javax.swing.JFrame {
         boolean t = cp.eliminarPedido(idProducto);
 
         if(t==true){
-            JOptionPane.showMessageDialog(rootPane, "Se elimino el  producto");
+            JOptionPane.showMessageDialog(rootPane, "Se elimino el  pedido");
         }else{
-            JOptionPane.showMessageDialog(rootPane, "No se elimino el producto");
+            JOptionPane.showMessageDialog(rootPane, "No se elimino el pedido");
         }
     }//GEN-LAST:event_jButton1ActionPerformed
 
