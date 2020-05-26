@@ -46,6 +46,8 @@ public class vistaTiendaAdministrador extends javax.swing.JFrame {
         jTextField10.setEnabled(false);
         jTextField11.setEditable(false);
         jTextField11.setEnabled(false);
+        jTextField9.setEditable(false);
+        jTextField9.setEnabled(false);
     }
 
     /**
@@ -439,7 +441,7 @@ public class vistaTiendaAdministrador extends javax.swing.JFrame {
 //            aprobacion=0;
 //        }
         String fechaaprobacion = jTextField8.getText();
-        int idadmin = Integer.parseInt(jTextField9.getText());
+        int idadmin = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         String idcvf = jComboBox2.getSelectedItem().toString();
         int idfotop = Integer.parseInt(jComboBox3.getSelectedItem().toString());
  
@@ -454,14 +456,14 @@ public class vistaTiendaAdministrador extends javax.swing.JFrame {
 
     private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
         // TODO add your handling code here:
-//        ControlAdministrador obja = new ControlAdministrador();
-//        
-//        listaadmin = obja.consultarAdministrador();
-//
-//        for (int i = 0; i < listaadmin.size(); i++) {
-//            Administrador objetoClasificacion = listaadmin.get(i);
-//            jComboBox1.addItem(String.valueOf(objetoClasificacion.getIdAdmin()));
-//        }
+        ControlAdministrador obja = new ControlAdministrador();
+        
+        listaadmin = obja.consultarAdministrador();
+
+        for (int i = 0; i < listaadmin.size(); i++) {
+            Administrador objetoClasificacion = listaadmin.get(i);
+            jComboBox1.addItem(String.valueOf(objetoClasificacion.getIdAdmin()));
+        }
 
         ControlClienteVendedor objcpo=new ControlClienteVendedor();
         listacliente=objcpo.consultarClienteVendedor();

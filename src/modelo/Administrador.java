@@ -144,6 +144,7 @@ public class Administrador {
         LinkedList<Administrador> lc = new LinkedList<>();
         BaseDatos objb = new BaseDatos();
         
+        int idAdmin;
         String nom1Admin = "";
         String nom2Admin = "";
         String ape1Admin = "";
@@ -159,6 +160,7 @@ public class Administrador {
                 Statement sentencia = objb.getConexion().createStatement();
                 rs = sentencia.executeQuery(sql);
                  while (rs.next()) {
+                     idAdmin = rs.getInt("idAdmin");
                      nom1Admin = rs.getString("nom1Admin");
                     fotoAdmin = rs.getString("fotoAdmin");
                     try {
@@ -178,7 +180,7 @@ public class Administrador {
                     correoAdmin = rs.getString("correoAdmin");
                     direccionAdmin = rs.getString("direccionAdmin");
                     contraseñaAdmin = rs.getString("contraseñaAdmin");
-                    lc.add(new Administrador(nom1Admin, nom2Admin, ape1Admin, ape2Admin, correoAdmin,direccionAdmin, contraseñaAdmin, fotoAdmin));
+                    lc.add(new Administrador(idAdmin, nom1Admin, nom2Admin, ape1Admin, ape2Admin, correoAdmin,direccionAdmin, contraseñaAdmin, fotoAdmin));
                 }
             } catch (SQLException ex) {
                 Logger.getLogger(Administrador.class.getName()).log(Level.SEVERE, null, ex);
