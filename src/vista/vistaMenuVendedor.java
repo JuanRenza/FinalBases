@@ -28,7 +28,6 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -40,16 +39,6 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(540, 960));
         jPanel1.setMinimumSize(new java.awt.Dimension(540, 960));
         jPanel1.setLayout(null);
-
-        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BtnVendedor-04.png"))); // NOI18N
-        jButton3.setContentAreaFilled(false);
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton3);
-        jButton3.setBounds(20, 570, 480, 140);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BtnVendedor-02.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
@@ -107,13 +96,8 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        vistaMenuAdministradorCrearAdmin v = new vistaMenuAdministradorCrearAdmin();
-        v.setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
 
@@ -123,7 +107,9 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-
+        vistaMenuVendedorProductos v = new vistaMenuVendedorProductos();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -167,7 +153,6 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Back;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
