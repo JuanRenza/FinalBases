@@ -30,7 +30,7 @@ public class ControlProducto {
         return t;
     }
 
-    public boolean eliminarTipoProducto(String idProducto) {
+    public boolean eliminarTipoProducto(int idProducto) {
         boolean t = false;
         Producto p = new Producto();
         String sql = "DELETE FROM productos WHERE(idProducto = '" + idProducto + "');";
