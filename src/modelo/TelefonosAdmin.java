@@ -64,22 +64,22 @@ public class TelefonosAdmin {
     
      public boolean insertarTelefonosAdmin(String sql) {
 
-        boolean t=false;
+        boolean t = false;
         BaseDatos objCon = new BaseDatos();
 
         if (objCon.crearConexion()) {
             try {
                 Statement sentencia = objCon.getConexion().createStatement();
                 sentencia.executeUpdate(sql);
-                t=true;
+                t = true;
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                t= false;
+                t = false;
             }
         }
-        
+
         return t;
-       
+
     }
        public boolean eliminarTelefonosAdmin(String sql) {
         boolean t = false;

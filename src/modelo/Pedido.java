@@ -5,12 +5,6 @@
  */
 package modelo;
 
-import control.BaseDatos;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.sql.Statement;
-import java.util.LinkedList;
-
 /**
  *
  * @author joseb
@@ -88,56 +82,6 @@ public class Pedido {
         return "Pedido{" + "idPedido=" + idPedido + ", valorTotalPedido=" + valorTotalPedido + ", fechaPedido=" + fechaPedido + ", estadoVenta=" + estadoVenta + ", nombrePersonaPedido=" + nombrePersonaPedido + ", idUsuarioP=" + idUsuarioP + '}';
     }
     
-    public boolean eliminarPedido(String sql) {
-        boolean t = false;
-        BaseDatos objCon = new BaseDatos();
-
-        if (objCon.crearConexion()) {
-            try {
-                Statement sentencia = objCon.getConexion().createStatement();
-                sentencia.executeUpdate(sql);
-                t = true;
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-                t = false;
-            }
-        }
-
-        return t;
-    }
     
-    public LinkedList<Pedido> consultarPedido(String sql) {
-        
-        LinkedList<Pedido> lp = new LinkedList<>();
-        BaseDatos objb = new BaseDatos();
-        int idPedido = 0;
-        String valorTotalPedido = "";
-        String fechaPedido = "";
-        String estadoVenta = "";
-        String nombrePersonaPedido = "";
-        int idUsuarioP = 0;
-        ResultSet rs = null;
-        
-        if (objb.crearConexion()) {
-            try {
-                Statement sentencia = objb.getConexion().createStatement();
-                rs = sentencia.executeQuery(sql);
-                 while (rs.next()) {
-                     idPedido = rs.getInt(idPedido);
-                    valorTotalPedido = rs.getString("valorTotalPedido");
-                    fechaPedido = rs.getString("fechaPedido");
-                    estadoVenta = rs.getString("estadoVenta");
-                    nombrePersonaPedido = rs.getString("nombrePersonaPedido");   
-                    idUsuarioP = rs.getInt(idUsuarioP);
-                               
-                    lp.add(new Pedido(idPedido, valorTotalPedido, fechaPedido, estadoVenta, nombrePersonaPedido, idUsuarioP));
-                }
-            } catch (SQLException ex) {
-                ex.printStackTrace();
-
-            }
-        }
-        return lp;
-        }
     
 }

@@ -140,10 +140,10 @@ public class Producto {
                     try {
                         p.setIdProducto(rs.getInt("idProducto"));
                         p.setNombreProducto(rs.getString("nombreProducto"));
-                        p.setFotoProducto(rs.getBytes("idTipo"));
+                        p.setFotoProducto(rs.getBytes("fotoProducto"));
                         p.setReferenciaProducto(rs.getString("referenciaProducto"));
-                        p.setDescripcionProducto(rs.getString("descripcionProducto"));
                         p.setValorProducto(rs.getDouble("valorProducto"));
+                        p.setDescripcionProducto(rs.getString("descripcionProducto"));
                         p.setIdTiendaPF(rs.getInt("idTiendaPF"));
                         p.setIdTipoPF(rs.getInt("idTipoPF"));
                     } catch (NullPointerException n) { }

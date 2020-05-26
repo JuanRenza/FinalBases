@@ -19,7 +19,7 @@ public class ControlTelefonosVendedor {
         TelefonosVendedor objc=new TelefonosVendedor();
         for (int i = 0; i < listaTelefonosV.size(); i++) {
             TelefonosVendedor get = listaTelefonosV.get(i);
-            String sql="insert into telefonosvendedor(numTelefono) value('"+get.getNumTelefono()+"');";
+            String sql="insert into TelefonosVendedor(numTelefono) value('"+get.getNumTelefono()+"');";
             
             t=objc.insertarTelefonosVendedor(sql);
         }
@@ -33,7 +33,7 @@ public class ControlTelefonosVendedor {
 
         boolean t = false;
         TelefonosVendedor getobjeto = new TelefonosVendedor();
-        String sql = "DELETE FROM telefonosvendedor WHERE(numTelefono = '" + listaTV+ "');";
+        String sql = "DELETE FROM telefonosvendedor WHERE(numerotelefono = '" + listaTV+ "');";
         t = getobjeto.eliminarTelefonosVendedor(sql);
 
         return t;
