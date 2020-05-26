@@ -28,6 +28,32 @@ public class ControlClienteVendedor {
         LinkedList<ClienteVendedor> listac = objclasi.consultarClienteV(sql);
         return listac;
     }
+    
+    public boolean consultarClienteVendedorId(String id) {
+        boolean existe = false;
+        String sql = "SELECT * FROM clientesvendedor WHERE identificacionC = '"+ id +"';";
+        ClienteVendedor objclasi = new ClienteVendedor();
+        LinkedList<ClienteVendedor> consultarCliente = objclasi.consultarClienteV(sql);
+        
+        if(consultarCliente.size() > 0){
+        existe = true;
+        }
+        
+        return existe;
+    }
+    
+    public boolean consultarClienteVendedorPrimerNombre(String nom) {
+        boolean existe = false;
+        String sql = "SELECT * FROM clientesvendedor WHERE nom1Cliente = '"+ nom +"';";
+        ClienteVendedor objclasi = new ClienteVendedor();
+        LinkedList<ClienteVendedor> consultarCliente = objclasi.consultarClienteV(sql);
+        
+        if(consultarCliente.size() > 0){
+        existe = true;
+        }
+        
+        return existe;
+    }
 
     public boolean insertarClientesV(ClienteVendedor objC) {
 

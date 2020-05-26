@@ -29,16 +29,16 @@ public class Administrador {
     private String correoAdmin;
     private String contraseñaAdmin;
     private String direccionAdmin;
-    private String fotoAdmin;
+    private byte[] fotoAdmin;
 
     public Administrador() {
     }
     
-    public Administrador(String nom1Admin1, String nom2Admin1, String ape1Admin1, String ape2Admin1, String direccionAdmin1, String contraseñaAdmin1, String fotoAdmin1) {
+    public Administrador(String nom1Admin1, String nom2Admin1, String ape1Admin1, String ape2Admin1, String direccionAdmin1, String contraseñaAdmin1, byte[] fotoAdmin1) {
     }
 
     public Administrador(int idAdministrador, String nom1Admin, String nom2Admin, String ape1Admin, String ape2Admin, String correoAdmin,
-            String contraseñaAdmin, String direccionAdmin, String fotoAdmin) {
+            String contraseñaAdmin, String direccionAdmin, byte[] fotoAdmin) {
 
         this.idAdmin = idAdministrador;
         this.nom1Admin = nom1Admin;
@@ -52,7 +52,7 @@ public class Administrador {
 
     }
 
-    public Administrador(String nom1Admin, String nom2Admin, String ape1Admin, String ape2Admin, String correoAdmin, String contraseñaAdmin, String direccionAdmin, String fotoAdmin) {
+    public Administrador(String nom1Admin, String nom2Admin, String ape1Admin, String ape2Admin, String correoAdmin, String contraseñaAdmin, String direccionAdmin, byte[] fotoAdmin) {
         this.nom1Admin = nom1Admin;
         this.nom2Admin = nom2Admin;
         this.ape1Admin = ape1Admin;
@@ -95,7 +95,7 @@ public class Administrador {
         return direccionAdmin;
     }
 
-    public String getFotoAdmin() {
+    public byte[] getFotoAdmin() {
         return fotoAdmin;
     }
 
@@ -131,7 +131,7 @@ public class Administrador {
         this.direccionAdmin = direccionAdmin;
     }
 
-    public void setFotoAdmin(String fotoAdmin) {
+    public void setFotoAdmin(byte[] fotoAdmin) {
         this.fotoAdmin = fotoAdmin;
     }
 
@@ -152,7 +152,7 @@ public class Administrador {
         String correoAdmin = "";
         String direccionAdmin = "";
         String contraseñaAdmin = "";
-        String fotoAdmin = "";
+        byte[] fotoAdmin = null;
 
         ResultSet rs = null;
           if (objb.crearConexion()) {
@@ -162,7 +162,7 @@ public class Administrador {
                  while (rs.next()) {
                      idAdmin = rs.getInt("idAdmin");
                      nom1Admin = rs.getString("nom1Admin");
-                    fotoAdmin = rs.getString("fotoAdmin");
+                    fotoAdmin = rs.getBytes("fotoAdmin");
                     try {
                         nom2Admin = rs.getString("nom2Admin");
                     } catch (NullPointerException n) { }
@@ -206,7 +206,7 @@ public class Administrador {
                 ps.setString(5, objT.getCorreoAdmin());
                 ps.setString(6, objT.getDireccionAdmin());
                 ps.setString(7, objT.getContraseñaAdmin());
-                ps.setString(8, objT.getFotoAdmin());
+                ps.setBytes(8, objT.getFotoAdmin());
              
                 ps.executeUpdate();
                 objb.getConexion().commit();

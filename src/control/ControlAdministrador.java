@@ -21,6 +21,47 @@ public class ControlAdministrador {
         listaA = objclasi.consultarAdministrador(sql);
         return listaA;
     }
+    
+    public boolean consultarAdministradorCorreo(String corr) {
+        boolean existe = false;
+        String sql = "SELECT * FROM administradores WHERE correoAdmin = '"+ corr +"';";
+        Administrador objAdmin = new Administrador();
+        LinkedList<Administrador> consultarAdmin = objAdmin.consultarAdministrador(sql);
+        
+        if(consultarAdmin.size() > 0){
+        existe = true;
+        }
+        
+        return existe;
+    }
+    
+    public boolean cconsultarAdministradorContraseña(String contra) {
+        boolean existe = false;
+        String sql = "SELECT * FROM administradores WHERE contraseñaAdmin = '"+ contra +"';";
+        Administrador objAdmin = new Administrador();
+        LinkedList<Administrador> consultarAdmin = objAdmin.consultarAdministrador(sql);
+        
+        if(consultarAdmin.size() > 0){
+        existe = true;
+        }
+        
+        return existe;
+    }
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
 
      public boolean insertarAdministrador(Administrador objC) {
         boolean t = false;
