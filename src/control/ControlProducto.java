@@ -7,6 +7,7 @@ package control;
 
 import java.util.LinkedList;
 import modelo.Producto;
+import modelo.Tienda;
 
 /**
  *
@@ -37,5 +38,15 @@ public class ControlProducto {
         t = p.eliminarProducto(sql);
         return t;
     }
+
+    public boolean actualizarProducto(String nombre, String referencia, double valorproducto, String descripcion, int idTienda, int idTipo, int id) {
+        boolean t = false;
+        Producto getobjeto = new Producto();
+        String sql = "UPDATE productos SET nombreProducto = '"+ nombre +"', referenciaProducto = '"+ referencia +"', valorProducto = '"+ valorproducto +"', descripcionProducto = '"+ descripcion +"', idTiendaPF = '"+ idTienda +"', idTipoPF = '"+ idTipo +"' WHERE (idProducto = '"+ id +"');";
+        t = getobjeto.actualizarProducto(sql);
+
+        return t;
+    }
+
     
 }
