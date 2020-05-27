@@ -15,6 +15,7 @@ import java.sql.Statement;
 import java.util.LinkedList;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -187,8 +188,9 @@ public class ClienteVendedor {
                 objb.getConexion().commit();
                 t = true;
             }
+            
         } catch (Exception ex) {
-            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, "Tiene datos no validos, verifiquelos e intente de nuevo");
             t = false;
         }
 

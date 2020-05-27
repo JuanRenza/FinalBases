@@ -32,6 +32,7 @@ public class vistaLogeoVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         txtId = new javax.swing.JTextField();
         txtxNom = new javax.swing.JTextField();
@@ -46,6 +47,18 @@ public class vistaLogeoVendedor extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(540, 960));
         jPanel1.setMinimumSize(new java.awt.Dimension(540, 960));
         jPanel1.setLayout(null);
+
+        jButton2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
+        jButton2.setForeground(new java.awt.Color(102, 51, 0));
+        jButton2.setText("¿No tienes cuenta? Registrate aquí");
+        jButton2.setContentAreaFilled(false);
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton2);
+        jButton2.setBounds(100, 540, 260, 40);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -116,7 +129,10 @@ public class vistaLogeoVendedor extends javax.swing.JFrame {
         
         
         if(existeId == true && existeNom == true){
-        
+        vistaMenuVendedor.idPersona = txtId.getText();
+        vistaMenuVendedor v = new vistaMenuVendedor();
+        v.setVisible(true);
+        this.dispose();
         }
         else{
             JOptionPane.showMessageDialog(null, "Los datos de ingreso no son validos");
@@ -130,6 +146,12 @@ public class vistaLogeoVendedor extends javax.swing.JFrame {
         vl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        vistaLogeoVendedorRegistrarse vl = new vistaLogeoVendedorRegistrarse();
+        vl.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -169,6 +191,7 @@ public class vistaLogeoVendedor extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Back;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtId;

@@ -7,7 +7,13 @@
 package vista;
 
 import control.ControlTienda;
+import java.awt.image.BufferedImage;
+import java.io.ByteArrayInputStream;
+import java.io.InputStream;
 import java.util.LinkedList;
+import javax.imageio.ImageIO;
+import javax.swing.ImageIcon;
+import javax.swing.JLabel;
 import javax.swing.table.DefaultTableModel;
 import modelo.Tienda;
 
@@ -19,8 +25,10 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
 
     /** Creates new form vistaMenuVendedorTienda */
     
-   LinkedList<Tienda> listaTiendas;
-      LinkedList<Tienda> listaTiendas2;
+    public static String idPersona;
+    
+    LinkedList<Tienda> listaTiendas;
+    LinkedList<Tienda> listaTiendas2;
     public vistaMenuVendedorTienda() {
         initComponents();
         listaTiendas = new LinkedList<>();
@@ -40,13 +48,17 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jButton5 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
-        jButton6 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
         Back = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(540, 960));
@@ -64,13 +76,21 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
             new String [] {
                 "idTienda", "nomTienda", "direccionTienda", "fotoTienda", "descripcionTienda", "aprobacionTienda", "fechaAprobacionTienda", "idAdminTF", "identificacionCVF", "idFotoPredeterminadaTF"
             }
-        ));
+        ) {
+            boolean[] canEdit = new boolean [] {
+                false, false, false, false, false, false, false, false, false, false
+            };
+
+            public boolean isCellEditable(int rowIndex, int columnIndex) {
+                return canEdit [columnIndex];
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(30, 310, 452, 320);
+        jScrollPane1.setBounds(40, 200, 452, 320);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdminTiendaConsultar-03.png"))); // NOI18N
+        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btncrear-05.png"))); // NOI18N
         jButton5.setContentAreaFilled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -78,11 +98,7 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(400, 210, 121, 50);
-
-        jTextField1.setBorder(null);
-        jPanel1.add(jTextField1);
-        jTextField1.setBounds(40, 220, 350, 30);
+        jButton5.setBounds(180, 670, 180, 60);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdminTiendaConsultarR-02.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
@@ -92,7 +108,7 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(160, 830, 220, 60);
+        jButton4.setBounds(180, 730, 170, 60);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -104,15 +120,10 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(30, 20, 70, 70);
 
-        jButton6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdminTiendaConsultar-02.png"))); // NOI18N
-        jButton6.setContentAreaFilled(false);
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton6);
-        jButton6.setBounds(30, 150, 170, 50);
+        jLabel1.setFont(new java.awt.Font("Montserrat SemiBold", 0, 24)); // NOI18N
+        jLabel1.setText("Mis Tiendas");
+        jPanel1.add(jLabel1);
+        jLabel1.setBounds(40, 160, 160, 30);
 
         Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BgVendedor-01.png"))); // NOI18N
         jPanel1.add(Back);
@@ -144,7 +155,7 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
+        vistaMenuVendedorTiendaModificar.idPersona = idPersona;
         vistaMenuVendedorTiendaModificar v = new vistaMenuVendedorTiendaModificar();
         v.setVisible(true);
         this.dispose();
@@ -158,71 +169,41 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+        String criterioBusqueda = idPersona;
         ControlTienda objcc = new ControlTienda();
         int ncol;
         Object[] fila;
-        
-        listaTiendas = objcc.consultarTiendas();
+
+            listaTiendas = objcc.consultarTiendasVendedor(criterioBusqueda);
 
             DefaultTableModel modelo = new DefaultTableModel();
             this.jTable1.setModel(modelo);
 
-            modelo.addColumn("idTienda");
             modelo.addColumn("nomTienda");
             modelo.addColumn("direccionTienda");
-            modelo.addColumn("fotoTienda");
-            modelo.addColumn("descripcionTienda");
             modelo.addColumn("aprobacionTienda");
             modelo.addColumn("fechaAprobacionTienda");
-            modelo.addColumn("idAdminTF");
-            modelo.addColumn("identificacionCVF");
-            modelo.addColumn("idFotoPredeterminadaTF");
+            modelo.addColumn("descripcion");
             ncol = modelo.getColumnCount();
 
             //Object[] fila = new Object[ncol];
             for (int i = 0; i < listaTiendas.size(); i++) {
                 fila = new Object[ncol];
-                fila[0] = listaTiendas.get(i).getIdTienda();
-                fila[1] = listaTiendas.get(i).getNomTienda();
-                fila[2] = listaTiendas.get(i).getDireccionTienda();
-                fila[3] = listaTiendas.get(i).getFotoTienda();
+                fila[0] = listaTiendas.get(i).getNomTienda();
+                fila[1] = listaTiendas.get(i).getDireccionTienda();
+                if(listaTiendas.get(i).getAprobacionTienda() == 0){fila[2] = "Pendiente"; fila[3] = "Pendiente";}
+                else{fila[2] = "Aprobada"; fila[3] = listaTiendas.get(i).getFechaAprobacionTienda();}
                 fila[4] = listaTiendas.get(i).getDescripcionTienda();
-                fila[5] = listaTiendas.get(i).getAprobacionTienda();
-                fila[6] = listaTiendas.get(i).getFechaAprobacionTienda();
-                fila[7] = listaTiendas.get(i).getIdAdminTF();
-                fila[8] = listaTiendas.get(i).getIdentificacionCVF();
-                fila[9] = listaTiendas.get(i).getIdFotoPredeterminadaTF();
                 modelo.addRow(fila);}
-    }//GEN-LAST:event_jButton6ActionPerformed
+            
+    }//GEN-LAST:event_formWindowOpened
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        String criterioBusqueda = jTextField1.getText();
-        ControlTienda objcc = new ControlTienda();
-        int ncol=10;
-        Object[] fila;
-        
-        if (criterioBusqueda!=null) {
-            listaTiendas2= objcc.consultarTiendas2(criterioBusqueda);
-
-
-            //Object[] fila = new Object[ncol];
-            for (int i = 0; i < listaTiendas2.size(); i++) {
-                fila = new Object[ncol];
-                fila[0] = listaTiendas2.get(i).getIdTienda();
-                fila[1] = listaTiendas2.get(i).getNomTienda();
-                fila[2] = listaTiendas2.get(i).getDireccionTienda();
-                fila[3] = listaTiendas2.get(i).getFotoTienda();
-                fila[4] = listaTiendas2.get(i).getDescripcionTienda();
-                fila[5] = listaTiendas2.get(i).getAprobacionTienda();
-                fila[6] = listaTiendas2.get(i).getFechaAprobacionTienda();
-                fila[7] = listaTiendas2.get(i).getIdAdminTF();
-                fila[8] = listaTiendas2.get(i).getIdentificacionCVF();
-                fila[9] = listaTiendas2.get(i).getIdFotoPredeterminadaTF();
-            }
-
-        }
+        vistaMenuVendedorTiendaCrear.idPersona = idPersona;
+        vistaMenuVendedorTiendaCrear v = new vistaMenuVendedorTiendaCrear();
+        v.setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
@@ -265,11 +246,10 @@ public class vistaMenuVendedorTienda extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
     // End of variables declaration//GEN-END:variables
 
 }

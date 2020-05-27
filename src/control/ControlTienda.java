@@ -28,6 +28,18 @@ public class ControlTienda {
         LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
         return listac;
     }
+    public LinkedList<Tienda> consultarTiendasVendedor(String id) {
+        String sql = "SELECT * FROM tiendas WHERE identificacionCVF = '"+ id +"';";
+        Tienda objclasi = new Tienda();
+        LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
+        return listac;
+    }
+    public LinkedList<Tienda> consultarTiendasVendedorModificar(String id,String nom) {
+        String sql = "SELECT * FROM tiendas WHERE identificacionCVF = '"+ id +"' and nomTienda = '"+nom+"';";
+        Tienda objclasi = new Tienda();
+        LinkedList<Tienda> listac = objclasi.consultarTiendas(sql);
+        return listac;
+    }
 
     public boolean insertarTiendas(Tienda objT) {
         boolean t = false;
@@ -35,6 +47,16 @@ public class ControlTienda {
         String sql = "";
         sql = "INSERT INTO tiendas (nomTienda,direccionTienda,fotoTienda,descripcionTienda,aprobacionTienda, fechaAprobacionTienda, idAdminTF, identificacionCVF, idFotoPredeterminadaTF) VALUES(?,?,?,?,?,?,?,?,?);";
         t = objciudad.insertarTiendas(objT, sql);
+        return t;
+
+    }
+    
+    public boolean insertarTiendasVendedor(Tienda objT) {
+        boolean t = false;
+        Tienda objciudad = new Tienda();
+        String sql = "";
+        sql = "INSERT INTO tiendas (nomTienda,direccionTienda,fotoTienda,descripcionTienda,identificacionCVF) VALUES(?,?,?,?,?);";
+        t = objciudad.insertTiendaVendedor(objT, sql);
         return t;
 
     }
@@ -99,10 +121,10 @@ public class ControlTienda {
         return t;
     }
 
-    public boolean actualizarTienda4(String nombre, String direccion, String descripcion, int idadmin, String idcvf, int idfotop, int id) {
+    public boolean actualizarTienda4(String nombre, String direccion, String descripcion, int id) {
         boolean t = false;
         Tienda getobjeto = new Tienda();
-        String sql = "UPDATE tiendas SET nomTienda = '"+ nombre +"', direccionTienda = '"+ direccion +"', descripcionTienda = '"+ descripcion +"',  idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcvf +"', idFotoPredeterminadaTF = '"+ idfotop +"' WHERE (idTienda = '"+ id +"');";
+        String sql = "UPDATE tiendas SET nomTienda = '"+ nombre +"', direccionTienda = '"+ direccion +"', descripcionTienda = '"+ descripcion + "'WHERE idTienda = '"+ id +"';";
         t = getobjeto.actualizarTienda(sql);
 
         return t;

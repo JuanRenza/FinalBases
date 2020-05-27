@@ -64,6 +64,14 @@ public class Tienda {
         this.identificacionCVF = identificacionCVF;
         this.idFotoPredeterminadaTF = idFotoPredeterminadaTF;
     }
+    
+   public Tienda(String nomTienda, String direccionTienda, byte[] fotoTienda, String descripcionTienda, String identificacionCVF) {
+        this.nomTienda = nomTienda;
+        this.direccionTienda = direccionTienda;
+        this.fotoTienda = fotoTienda;
+        this.descripcionTienda = descripcionTienda;
+        this.identificacionCVF = identificacionCVF;
+    }
 
 //    public Tienda(String nombre, String direccion, Tienda fp, String descripcion, int aprobacion, String fechaaprobacion, int idadmin, String idcvf, int idfotop) {
 //        this.nomTienda = nombre;
@@ -241,6 +249,32 @@ public class Tienda {
 
     }
 
+    public boolean insertTiendaVendedor(Tienda objT, String sql) {
+        boolean t = false;
+        BaseDatos objb = new BaseDatos();
+        PreparedStatement ps = null;
+        try {
+            if (objb.crearConexion()) {
+                objb.getConexion().setAutoCommit(false);
+                ps = objb.getConexion().prepareStatement(sql);
+                ps.setString(1, objT.getNomTienda());
+                ps.setString(2, objT.getDireccionTienda());
+                ps.setBytes(3, objT.getFotoTienda());
+                ps.setString(4, objT.getDescripcionTienda());
+                ps.setString(5, objT.getIdentificacionCVF());
+
+                ps.executeUpdate();
+                objb.getConexion().commit();
+                t = true;
+            }
+        } catch (Exception ex) {
+            Logger.getLogger(BaseDatos.class.getName()).log(Level.SEVERE, null, ex);
+            t = false;
+        }
+
+        return t;
+    }
+    
     public boolean insertarTiendas(Tienda objT, String sql) {
         boolean t = false;
         BaseDatos objb = new BaseDatos();

@@ -7,7 +7,6 @@ package control;
 
 import java.util.LinkedList;
 import modelo.Producto;
-import modelo.Tienda;
 
 /**
  *
@@ -20,6 +19,16 @@ public class ControlProducto {
         Producto objp = new Producto();
         LinkedList<Producto> listp = objp.buscarProducto(sql);
         return listp;
+    }
+    
+    public LinkedList<Producto> consultarProductosVendedor(String id) {
+        String sql = "SELECT idProducto,nombreProducto,fotoProducto,referenciaProducto,valorProducto,descripcionProducto,idTiendaPF,idTipoPF FROM (productos\n" +
+        "JOIN tiendas ON (productos.idTiendaPF = tiendas.idTienda)\n" +
+        "JOIN clientesvendedor ON(clientesvendedor.identificacionC = tiendas.identificacionCVF))\n" +
+        "WHERE identificacionC = '"+ id +"';";
+        Producto p = new Producto();
+        LinkedList<Producto> listap = p.buscarProducto(sql);
+        return listap;
     }
         
     public boolean insertarProducto(Producto objp) {

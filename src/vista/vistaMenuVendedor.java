@@ -14,6 +14,9 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
     /**
      * Creates new form vistaMenuVendedor
      */
+    
+    public static String idPersona;
+    
     public vistaMenuVendedor() {
         initComponents();
     }
@@ -100,14 +103,15 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-
-        vistaMenuVendedorTienda v = new vistaMenuVendedorTienda();
-        v.setVisible(true);
+       vistaMenuVendedorTienda v = new vistaMenuVendedorTienda();
+       vistaMenuVendedorTienda.idPersona = idPersona;
+       v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         vistaMenuVendedorProductos v = new vistaMenuVendedorProductos();
+        vistaMenuVendedorProductos.idPersona = idPersona;
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
