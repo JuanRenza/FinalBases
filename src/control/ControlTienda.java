@@ -61,10 +61,12 @@ public class ControlTienda {
 
     }
 
-    public boolean eliminarTiendas(int listaTiendas) {
+    public boolean eliminarTiendas(int idTienda) {
         boolean t = false;
         ClienteVendedor getobjeto = new ClienteVendedor();
-        String sql = "DELETE FROM tiendas WHERE(idTienda = '" + listaTiendas + "');";
+        String sql = "DELETE FROM productos WHERE(idTiendaPF = '" + idTienda + "');";
+        t = getobjeto.eliminarClientesV(sql);
+        sql = "DELETE FROM tiendas WHERE(idTienda = '" + idTienda + "');";
         t = getobjeto.eliminarClientesV(sql);
 
         return t;

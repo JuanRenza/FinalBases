@@ -135,6 +135,9 @@ public class vistaLogeoAdministrador extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, "Los datos de ingreso no son validos");
         }
 
+        String IdAdmin = Ca.consultarIdAdmin(txtCorreo.getText());
+        vistaMenuAdministrador.idAdmin = IdAdmin;
+
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

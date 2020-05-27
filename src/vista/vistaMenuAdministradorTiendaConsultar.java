@@ -22,6 +22,7 @@ public class vistaMenuAdministradorTiendaConsultar extends javax.swing.JFrame {
     
     LinkedList<Tienda> listaTiendas;
     LinkedList<Tienda> listaTiendas2;
+    public static String idAdmin;
     
     public vistaMenuAdministradorTiendaConsultar() {
         initComponents();
@@ -224,22 +225,29 @@ public class vistaMenuAdministradorTiendaConsultar extends javax.swing.JFrame {
         
         if (criterioBusqueda!=null) {
             listaTiendas2= objcc.consultarTiendas2(criterioBusqueda);
-
-
+            DefaultTableModel modelo = new DefaultTableModel();
+            this.jTable1.setModel(modelo);
+            modelo.addColumn("idTienda");
+            modelo.addColumn("nomTienda");
+            modelo.addColumn("direccionTienda");
+//            modelo.addColumn("fotoTienda");
+            modelo.addColumn("descripcionTienda");
+            modelo.addColumn("aprobacionTienda");
+            modelo.addColumn("fechaAprobacionTienda");
+            modelo.addColumn("identificacionCVF");
+            ncol = modelo.getColumnCount();
+            
             //Object[] fila = new Object[ncol];
             for (int i = 0; i < listaTiendas2.size(); i++) {
                 fila = new Object[ncol];
                 fila[0] = listaTiendas2.get(i).getIdTienda();
                 fila[1] = listaTiendas2.get(i).getNomTienda();
                 fila[2] = listaTiendas2.get(i).getDireccionTienda();
-                fila[3] = listaTiendas2.get(i).getFotoTienda();
-                fila[4] = listaTiendas2.get(i).getDescripcionTienda();
-                fila[5] = listaTiendas2.get(i).getAprobacionTienda();
-                fila[6] = listaTiendas2.get(i).getFechaAprobacionTienda();
-                fila[7] = listaTiendas2.get(i).getIdAdminTF();
-                fila[8] = listaTiendas2.get(i).getIdentificacionCVF();
-                fila[9] = listaTiendas2.get(i).getIdFotoPredeterminadaTF();
-                
+                fila[3] = listaTiendas2.get(i).getDescripcionTienda();
+                fila[4] = listaTiendas2.get(i).getAprobacionTienda();
+                fila[5] = listaTiendas2.get(i).getFechaAprobacionTienda();
+                fila[6] = listaTiendas2.get(i).getIdentificacionCVF();
+                modelo.addRow(fila);
             }
 
         }   // TODO add your handling code here:

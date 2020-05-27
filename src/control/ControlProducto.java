@@ -21,6 +21,13 @@ public class ControlProducto {
         return listp;
     }
     
+    public LinkedList<Producto> consultarProductoId(String id) {
+        String sql="Select * from productos WHERE(idProducto = '" + id + "');";
+        Producto objp = new Producto();
+        LinkedList<Producto> listp = objp.buscarProducto(sql);
+        return listp;
+    }
+    
     public LinkedList<Producto> consultarProductosVendedor(String id) {
         String sql = "SELECT idProducto,nombreProducto,fotoProducto,referenciaProducto,valorProducto,descripcionProducto,idTiendaPF,idTipoPF FROM (productos\n" +
         "JOIN tiendas ON (productos.idTiendaPF = tiendas.idTienda)\n" +

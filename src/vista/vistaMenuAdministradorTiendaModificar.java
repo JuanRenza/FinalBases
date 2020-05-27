@@ -5,9 +5,18 @@
  */
 package vista;
 
+import control.ControlAdministrador;
+import control.ControlClienteVendedor;
+import control.ControlFotoPredeterminada;
 import control.ControlTienda;
+import java.text.DateFormat;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.LinkedList;
 import javax.swing.JOptionPane;
+import modelo.Administrador;
+import modelo.ClienteVendedor;
+import modelo.FotoPredeterminada;
 import modelo.Tienda;
 
 /**
@@ -24,6 +33,7 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
     
     LinkedList<Tienda> listaTiendas;
     LinkedList<Tienda> listaTiendas2;
+    public static String idAdmin;
     
     public vistaMenuAdministradorTiendaModificar() {
         initComponents();
@@ -49,7 +59,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
         jTextField9 = new javax.swing.JTextField();
         jTextField10 = new javax.swing.JTextField();
         jTextField11 = new javax.swing.JTextField();
@@ -58,16 +67,21 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jComboBox2 = new javax.swing.JComboBox<>();
         jComboBox3 = new javax.swing.JComboBox<>();
         txtId = new javax.swing.JTextField();
-        jButton5 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         Back = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setMaximumSize(new java.awt.Dimension(540, 960));
         setMinimumSize(new java.awt.Dimension(540, 960));
+        addWindowListener(new java.awt.event.WindowAdapter() {
+            public void windowOpened(java.awt.event.WindowEvent evt) {
+                formWindowOpened(evt);
+            }
+        });
 
         jPanel1.setBackground(new java.awt.Color(255, 255, 255));
         jPanel1.setMaximumSize(new java.awt.Dimension(540, 960));
@@ -117,8 +131,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jLabel12.setBounds(40, 680, 154, 24);
         jPanel1.add(jTextField6);
         jTextField6.setBounds(40, 420, 220, 30);
-        jPanel1.add(jTextField8);
-        jTextField8.setBounds(40, 490, 220, 30);
         jPanel1.add(jTextField9);
         jTextField9.setBounds(40, 560, 220, 30);
         jPanel1.add(jTextField10);
@@ -150,16 +162,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jPanel1.add(txtId);
         txtId.setBounds(40, 250, 360, 30);
 
-        jButton5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdminTiendaConsultarR-03.png"))); // NOI18N
-        jButton5.setContentAreaFilled(false);
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton5);
-        jButton5.setBounds(280, 820, 170, 50);
-
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdminTiendaConsultarR-02.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -168,7 +170,7 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(90, 820, 170, 50);
+        jButton4.setBounds(190, 820, 170, 50);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -189,6 +191,8 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3);
         jButton3.setBounds(420, 240, 90, 50);
+        jPanel1.add(jDateChooser1);
+        jDateChooser1.setBounds(40, 500, 460, 30);
 
         Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bgAdminTiendamModificar-01-01.png"))); // NOI18N
         jPanel1.add(Back);
@@ -225,19 +229,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-            // TODO add your handling code here:
-        int idtienda=Integer.parseInt(txtId.getText());
-        ControlTienda objCc=new ControlTienda();
-        boolean t=objCc.eliminarTiendas(idtienda);
-        
-        if(t==true){
-            JOptionPane.showMessageDialog(rootPane, "Se elimino la Tienda correctamente");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "No se elimino la Tienda");
-        }
-    }//GEN-LAST:event_jButton5ActionPerformed
-
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
             // TODO add your handling code here:
         Tienda fp = new Tienda();
@@ -249,7 +240,19 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
 //        }else{
 //            aprobacion=0;
 //        }
-        String fechaaprobacion = jTextField8.getText();
+        String fechaaprobacion = "";
+        
+        try {
+            //jDateChooser el nombre la variable  del componente jdatecgooser
+            Date fecha = jDateChooser1.getDate();
+            DateFormat f = new SimpleDateFormat("yyyy-MM-dd");
+            String fecha2 = f.format(fecha);
+
+            //textFecha nombre de la variable del componenten jtextfiel
+            fechaaprobacion = fecha2;
+        } catch (Exception e) {
+        }
+
         int idadmin = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         String idcvf = jComboBox2.getSelectedItem().toString();
         int idfotop = Integer.parseInt(jComboBox3.getSelectedItem().toString());
@@ -296,7 +299,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
                 fila[9] = listaTiendas2.get(i).getIdFotoPredeterminadaTF();
                 
                 jTextField6.setText(fila[5].toString());
-                jTextField8.setText(fila[6].toString());
                 jTextField9.setText(fila[7].toString());
                 jTextField10.setText(fila[8].toString());
                 jTextField11.setText(fila[9].toString());
@@ -312,6 +314,42 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
     private void jComboBox3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox3ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3ActionPerformed
+
+    private void formWindowOpened(java.awt.event.WindowEvent evt) {//GEN-FIRST:event_formWindowOpened
+            // TODO add your handling code here:
+        ControlAdministrador obja = new ControlAdministrador();
+        
+        LinkedList<Administrador> listaadmin = obja.consultarAdministrador();
+
+        for (int i = 0; i < listaadmin.size(); i++) {
+            Administrador objetoClasificacion = listaadmin.get(i);
+            jComboBox1.addItem(String.valueOf(objetoClasificacion.getIdAdmin()));
+        }
+
+        ControlClienteVendedor objcpo=new ControlClienteVendedor();
+        LinkedList<ClienteVendedor> listacliente = objcpo.consultarClienteVendedor();
+        for (int j = 0; j < listacliente.size(); j++) {
+            ClienteVendedor objpais = listacliente.get(j);
+            
+            jComboBox2.addItem(objpais.getIdentificacionC());
+        }
+        
+        ControlFotoPredeterminada obj=new ControlFotoPredeterminada();
+        LinkedList<FotoPredeterminada> listafoto = obj.consultarFotoPredeterminada();
+        
+        for (int k = 0; k < listafoto.size(); k++) {
+            FotoPredeterminada objpais = listafoto.get(k);
+            jComboBox3.addItem(String.valueOf(objpais.getIdfotoPredeterminada()));
+        }
+        
+        
+        String[] arreglo = new String[2];
+        arreglo[0]="Si";
+        arreglo[1]="No";
+        
+        jComboBox4.addItem(arreglo[0]);
+        jComboBox4.addItem(arreglo[1]);
+    }//GEN-LAST:event_formWindowOpened
 
     /**
      * @param args the command line arguments
@@ -353,11 +391,11 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
     private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
+    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -370,7 +408,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField10;
     private javax.swing.JTextField jTextField11;
     private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JTextField jTextField9;
     private javax.swing.JTextField txtId;
     // End of variables declaration//GEN-END:variables

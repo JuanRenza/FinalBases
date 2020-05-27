@@ -22,6 +22,8 @@ public class vistaMenuAdministradorProductos extends javax.swing.JFrame {
      */
     
         LinkedList<Producto> pr;
+        public static String idAdmin;
+        
     public vistaMenuAdministradorProductos() {
         initComponents();
         pr = new LinkedList<>();
@@ -40,7 +42,6 @@ public class vistaMenuAdministradorProductos extends javax.swing.JFrame {
         txtId = new javax.swing.JTextField();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -71,17 +72,7 @@ public class vistaMenuAdministradorProductos extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(40, 440, 460, 210);
-
-        jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdminTiendaConsultarR-03.png"))); // NOI18N
-        jButton4.setContentAreaFilled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4);
-        jButton4.setBounds(160, 820, 220, 60);
+        jScrollPane1.setBounds(40, 440, 460, 420);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -142,18 +133,6 @@ public class vistaMenuAdministradorProductos extends javax.swing.JFrame {
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int idPr=Integer.parseInt(txtId.getText());
-        ControlProducto objCc=new ControlProducto();
-        boolean t=objCc.eliminarTipoProducto(idPr);
-        
-        if(t==true){
-            JOptionPane.showMessageDialog(rootPane, "Se elimino el producto");
-        }else{
-            JOptionPane.showMessageDialog(rootPane, "No se elimino el producto");
-        }
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
 
         vistaMenuAdministrador v = new vistaMenuAdministrador();
@@ -168,7 +147,7 @@ public class vistaMenuAdministradorProductos extends javax.swing.JFrame {
         int ncol;
         Object[] fila;
         if (criterioBusqueda != null) {
-            pr = objcc.consultarProducto();
+            pr = objcc.consultarProductoId(criterioBusqueda);
 
             DefaultTableModel modelo = new DefaultTableModel();
             this.jTable1.setModel(modelo);
@@ -308,7 +287,6 @@ public class vistaMenuAdministradorProductos extends javax.swing.JFrame {
     private javax.swing.JLabel Back;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;

@@ -48,20 +48,6 @@ public class ControlAdministrador {
         return existe;
     }
     
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
-    
 
      public boolean insertarAdministrador(Administrador objC) {
         boolean t = false;
@@ -81,6 +67,20 @@ public class ControlAdministrador {
         t = getobjeto.eliminarAdministrador(sql);
 
         return t;
+    }
+
+    public String consultarIdAdmin(String text) {
+        String Id = "";
+        String sql = "SELECT idAdmin FROM administradores WHERE correoAdmin = '" + text + "';";
+        Administrador objAdmin = new Administrador();
+        LinkedList<Administrador> consultarAdmin = objAdmin.consultarAdministrador(sql);
+        consultarAdmin = objAdmin.consultarAdministrador(sql);
+        
+        for (int i = 0; i < consultarAdmin.size(); i++) {
+            Id = String.valueOf(consultarAdmin.get(i).getIdAdmin());
+            }
+
+        return Id;
     }
     
     
