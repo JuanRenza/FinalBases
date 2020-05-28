@@ -91,11 +91,11 @@ public class vistaMenuVendedorTiendaCrear extends javax.swing.JFrame {
 
         jLabel4.setText("Descripcion Tienda");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(40, 360, 270, 14);
+        jLabel4.setBounds(40, 360, 270, 16);
 
         jLabel2.setText("Direccion Tienda");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(40, 290, 78, 14);
+        jLabel2.setBounds(40, 290, 95, 16);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
@@ -126,7 +126,7 @@ public class vistaMenuVendedorTiendaCrear extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel5.setText("Ruta Foto");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(40, 440, 64, 24);
+        jLabel5.setBounds(40, 440, 64, 23);
 
         jLabel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(jLabel8);

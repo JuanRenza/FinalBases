@@ -68,7 +68,7 @@ public class vistaLogeoVendedorRegistrarse extends javax.swing.JFrame {
         jLabel2.setForeground(new java.awt.Color(51, 51, 51));
         jLabel2.setText("Primer Nombre");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(70, 290, 170, 18);
+        jLabel2.setBounds(70, 290, 170, 19);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -84,7 +84,7 @@ public class vistaLogeoVendedorRegistrarse extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setText("Identificacion");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(70, 220, 160, 18);
+        jLabel1.setBounds(70, 220, 160, 19);
         jPanel1.add(jTextField1);
         jTextField1.setBounds(70, 240, 390, 30);
 
@@ -92,7 +92,7 @@ public class vistaLogeoVendedorRegistrarse extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setText("Segundo Nombre");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(70, 370, 180, 18);
+        jLabel3.setBounds(70, 370, 180, 19);
         jPanel1.add(jTextField3);
         jTextField3.setBounds(70, 390, 390, 30);
 
@@ -100,7 +100,7 @@ public class vistaLogeoVendedorRegistrarse extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(51, 51, 51));
         jLabel4.setText("Primer Apellido");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(70, 450, 170, 18);
+        jLabel4.setBounds(70, 450, 170, 19);
         jPanel1.add(jTextField4);
         jTextField4.setBounds(70, 470, 390, 30);
 
@@ -108,7 +108,7 @@ public class vistaLogeoVendedorRegistrarse extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(51, 51, 51));
         jLabel5.setText("Segundo Apellido");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(70, 530, 180, 18);
+        jLabel5.setBounds(70, 530, 180, 19);
 
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -122,13 +122,13 @@ public class vistaLogeoVendedorRegistrarse extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(51, 51, 51));
         jLabel6.setText("Fecha Nacimiento");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(70, 610, 190, 18);
+        jLabel6.setBounds(70, 610, 190, 19);
 
         jLabel7.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(51, 51, 51));
         jLabel7.setText("Direccion");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(70, 680, 130, 18);
+        jLabel7.setBounds(70, 680, 130, 19);
 
         jTextField7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {

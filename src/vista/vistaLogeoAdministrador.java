@@ -65,6 +65,11 @@ public class vistaLogeoAdministrador extends javax.swing.JFrame {
         txtCorreo.setBounds(110, 420, 320, 40);
 
         txtContraseña.setFont(new java.awt.Font("Montserrat Light", 0, 12)); // NOI18N
+        txtContraseña.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtContraseñaActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtContraseña);
         txtContraseña.setBounds(110, 500, 320, 40);
 
@@ -149,6 +154,10 @@ public class vistaLogeoAdministrador extends javax.swing.JFrame {
         vl.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void txtContraseñaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtContraseñaActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtContraseñaActionPerformed
 
     /**
      * @param args the command line arguments

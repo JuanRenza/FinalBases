@@ -104,31 +104,31 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Aprobacion Tienda");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(40, 400, 122, 24);
+        jLabel7.setBounds(40, 400, 122, 23);
 
         jLabel9.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Fecha Aprobacion Tienda");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(40, 470, 166, 24);
+        jLabel9.setBounds(40, 470, 166, 23);
 
         jLabel10.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Identificacion Administrador");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(40, 540, 183, 24);
+        jLabel10.setBounds(40, 540, 183, 23);
 
         jLabel11.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Id Cliente Vendedor");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(40, 610, 129, 24);
+        jLabel11.setBounds(40, 610, 129, 23);
 
         jLabel12.setFont(new java.awt.Font("Yu Gothic", 0, 14)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Id Foto Predeterminada");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(40, 680, 154, 24);
+        jLabel12.setBounds(40, 680, 154, 23);
         jPanel1.add(jTextField6);
         jTextField6.setBounds(40, 420, 220, 30);
         jPanel1.add(jTextField9);
@@ -202,7 +202,7 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setText("Aprobacion Tienda");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(40, 400, 122, 24);
+        jLabel8.setBounds(40, 400, 122, 23);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);

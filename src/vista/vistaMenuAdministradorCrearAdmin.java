@@ -85,7 +85,13 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         jLabel6.setForeground(new java.awt.Color(255, 204, 0));
         jLabel6.setText("Correo");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(80, 480, 220, 15);
+        jLabel6.setBounds(80, 480, 220, 16);
+
+        contraseñaAdmin.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                contraseñaAdminActionPerformed(evt);
+            }
+        });
         jPanel1.add(contraseñaAdmin);
         contraseñaAdmin.setBounds(80, 630, 380, 30);
 
@@ -93,7 +99,7 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         jLabel7.setForeground(new java.awt.Color(255, 204, 0));
         jLabel7.setText("Direccion");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(80, 540, 240, 15);
+        jLabel7.setBounds(80, 540, 240, 16);
 
         jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BTN-log-VENDEDOR-02.png"))); // NOI18N
         jButton1.setContentAreaFilled(false);
@@ -109,7 +115,7 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         jLabel8.setForeground(new java.awt.Color(255, 204, 0));
         jLabel8.setText("Contraseña");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(80, 610, 250, 15);
+        jLabel8.setBounds(80, 610, 250, 16);
 
         jLabel9.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 204, 0));
@@ -149,7 +155,7 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 204, 0));
         jLabel3.setText("Nombre2");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(80, 300, 100, 15);
+        jLabel3.setBounds(80, 300, 100, 16);
 
         jLabel2.setFont(new java.awt.Font("Montserrat SemiBold", 0, 12)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 204, 0));
@@ -161,7 +167,7 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         jLabel4.setForeground(new java.awt.Color(255, 204, 0));
         jLabel4.setText("Apellido1");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(80, 360, 240, 15);
+        jLabel4.setBounds(80, 360, 240, 16);
         jPanel1.add(correoAdmin);
         correoAdmin.setBounds(80, 500, 380, 30);
 
@@ -169,13 +175,13 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(255, 204, 0));
         jLabel5.setText("Apellido2");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(80, 420, 240, 15);
+        jLabel5.setBounds(80, 420, 240, 16);
 
         jLabel1.setFont(new java.awt.Font("Montserrat Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("INSERTAR ADMINISTRADOR");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(90, 180, 380, 30);
+        jLabel1.setBounds(90, 180, 380, 32);
 
         Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bgAdmin-01.png"))); // NOI18N
         jPanel1.add(Back);
@@ -196,13 +202,43 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         // TODO add your handling code here
 
         Administrador ad= new Administrador();
+        if(nom1Admin.getText().length() > 0){
         ad.setNom1Admin(nom1Admin.getText());
+        }else{
+          
+       JOptionPane.showMessageDialog(rootPane, "Ingrese un nombre");
+    
+  }
         ad.setNom2Admin(nom2Admin.getText());
+        
+        if(ape1Admin.getText().length() > 0){
         ad.setApe1Admin(ape1Admin.getText());
+         }else{
+          
+       JOptionPane.showMessageDialog(rootPane, "Ingrese un apellido");
+    
+  }
         ad.setApe2Admin(ape2Admin.getText());
+        
+         if(correoAdmin.getText().length() > 0){
         ad.setCorreoAdmin(correoAdmin.getText());
+         }else{
+          
+       JOptionPane.showMessageDialog(rootPane, "Ingrese un correo");
+         }
+         if(direccionAdmin.getText().length() > 0){
         ad.setDireccionAdmin(direccionAdmin.getText());
+         }else{
+          
+       JOptionPane.showMessageDialog(rootPane, "Ingrese una direccion");
+         }
+         if(contraseñaAdmin.getText().length() > 0){
         ad.setContraseñaAdmin(contraseñaAdmin.getText());
+        
+         }else{
+          
+       JOptionPane.showMessageDialog(rootPane, "Ingrese una contraseña");
+         }
         File rutaFotoProducto = new File(txtfoton.getText());
 
         try{
@@ -245,6 +281,10 @@ public class vistaMenuAdministradorCrearAdmin extends javax.swing.JFrame {
         v.setVisible(true);
         this.dispose();
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void contraseñaAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_contraseñaAdminActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_contraseñaAdminActionPerformed
 
     /**
      * @param args the command line arguments

@@ -34,6 +34,7 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
     
     public static String idPersona;
     LinkedList<TipoProducto> cblTipoProducto;
+   
     public vistaMenuVendedorProductosCrear() {
         initComponents();
         cblTipoProducto = new LinkedList<>();
@@ -84,7 +85,7 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel2.setText("Nombre Producto");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(50, 310, 180, 18);
+        jLabel2.setBounds(50, 310, 180, 19);
 
         jButton1.setText("Escoger foto");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -93,19 +94,19 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(50, 430, 93, 23);
+        jButton1.setBounds(50, 430, 103, 25);
 
         jLabel3.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel3.setText("Referencia");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(50, 470, 140, 18);
+        jLabel3.setBounds(50, 470, 140, 19);
         jPanel1.add(jLabel9);
         jLabel9.setBounds(440, 370, 50, 50);
 
         jLabel4.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel4.setText("Foto Producto");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(50, 370, 160, 18);
+        jLabel4.setBounds(50, 370, 160, 19);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BTN-log-VENDEDOR-02.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
@@ -120,12 +121,12 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel5.setText("Valor");
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(50, 530, 100, 18);
+        jLabel5.setBounds(50, 530, 100, 19);
 
         jLabel6.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel6.setText("Descripcion");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(50, 590, 380, 18);
+        jLabel6.setBounds(50, 590, 380, 19);
 
         jLabel10.setFont(new java.awt.Font("Montserrat SemiBold", 1, 24)); // NOI18N
         jLabel10.setText("Crear nuevo producto");
@@ -137,7 +138,7 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Montserrat SemiBold", 0, 14)); // NOI18N
         jLabel8.setText("Id Tipo");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(50, 680, 110, 18);
+        jLabel8.setBounds(50, 680, 110, 19);
         jPanel1.add(jTextField1);
         jTextField1.setBounds(50, 330, 370, 30);
 
@@ -155,6 +156,12 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3);
         jButton3.setBounds(30, 20, 70, 70);
+
+        jTextField4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField4);
         jTextField4.setBounds(50, 550, 370, 30);
         jPanel1.add(jTextField5);
@@ -220,6 +227,12 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
         String nombre = jTextField1.getText();
         File ruta = new File(jTextField2.getText());
         String referencia = jTextField3.getText();
+        
+        try{
+        double valorproducto = Double.parseDouble(jTextField4.getText());
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(rootPane, "Ingrese un valor numérico");
+        }
         double valorproducto = Double.parseDouble(jTextField4.getText());
         String descripcion = jTextField5.getText();
         
@@ -281,6 +294,10 @@ public class vistaMenuVendedorProductosCrear extends javax.swing.JFrame {
             cbTipoP.addItem(objetoClasificacion.getTipoProducto());
         }
     }//GEN-LAST:event_formWindowOpened
+
+    private void jTextField4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField4ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField4ActionPerformed
 
     /**
      * @param args the command line arguments
