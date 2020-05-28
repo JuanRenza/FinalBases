@@ -31,6 +31,7 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
@@ -42,6 +43,16 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(540, 960));
         jPanel1.setMinimumSize(new java.awt.Dimension(540, 960));
         jPanel1.setLayout(null);
+
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
+        jButton1.setContentAreaFilled(false);
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton1);
+        jButton1.setBounds(30, 20, 70, 70);
 
         jButton4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BtnVendedor-02.png"))); // NOI18N
         jButton4.setContentAreaFilled(false);
@@ -122,6 +133,13 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
+        vistaInicial vl = new vistaInicial();
+        vl.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -159,6 +177,7 @@ public class vistaMenuVendedor extends javax.swing.JFrame {
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Back;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;

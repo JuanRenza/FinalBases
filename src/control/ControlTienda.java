@@ -114,10 +114,10 @@ public class ControlTienda {
         return t;
     }
 
-    public boolean actualizarTienda3(String fechaaprobacion, int idadmin, String idcvf, int idfotop, int id) {
+    public boolean actualizarTienda3(int aprobacion, String fechaaprobacion, int idadmin, String idcvf, int idfotop, int id) {
         boolean t = false;
         Tienda getobjeto = new Tienda();
-        String sql = "UPDATE tiendas SET fechaAprobacionTienda = '"+ fechaaprobacion +"', idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcvf +"', idFotoPredeterminadaTF = '"+ idfotop +"' WHERE (idTienda = '"+ id +"');";
+        String sql = "UPDATE tiendas SET aprobacionTienda = '"+ aprobacion +"', fechaAprobacionTienda = '"+ fechaaprobacion +"', idAdminTF = '"+ idadmin +"', identificacionCVF = '"+ idcvf +"', idFotoPredeterminadaTF = '"+ idfotop +"' WHERE (idTienda = '"+ id +"');";
         t = getobjeto.actualizarTienda(sql);
 
         return t;

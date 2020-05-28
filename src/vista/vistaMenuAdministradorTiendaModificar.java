@@ -70,7 +70,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         Back = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
@@ -191,8 +190,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         });
         jPanel1.add(jButton3);
         jButton3.setBounds(420, 240, 90, 50);
-        jPanel1.add(jDateChooser1);
-        jDateChooser1.setBounds(40, 500, 460, 30);
 
         Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/bgAdminTiendamModificar-01-01.png"))); // NOI18N
         jPanel1.add(Back);
@@ -253,12 +250,19 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
         } catch (Exception e) {
         }
 
+        String aprobacion1=jComboBox4.getSelectedItem().toString();
+        int aprobacion;
+        if(aprobacion1.equals("Si")){
+            aprobacion=1;
+        }else{
+            aprobacion=0;
+        }
         int idadmin = Integer.parseInt(jComboBox1.getSelectedItem().toString());
         String idcvf = jComboBox2.getSelectedItem().toString();
         int idfotop = Integer.parseInt(jComboBox3.getSelectedItem().toString());
  
         ControlTienda objcp = new ControlTienda();
-        boolean t = objcp.actualizarTienda3(fechaaprobacion, idadmin, idcvf, idfotop, id);
+        boolean t = objcp.actualizarTienda3(aprobacion, fechaaprobacion, idadmin, idcvf, idfotop, id);
         if (t == true) {
             JOptionPane.showMessageDialog(rootPane, "Modificado con exito");
         } else {
@@ -395,7 +399,6 @@ public class vistaMenuAdministradorTiendaModificar extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox4;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

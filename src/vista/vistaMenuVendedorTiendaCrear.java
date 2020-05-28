@@ -91,11 +91,11 @@ public class vistaMenuVendedorTiendaCrear extends javax.swing.JFrame {
 
         jLabel4.setText("Descripcion Tienda");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(40, 360, 270, 16);
+        jLabel4.setBounds(40, 360, 270, 14);
 
         jLabel2.setText("Direccion Tienda");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(40, 290, 95, 16);
+        jLabel2.setBounds(40, 290, 78, 14);
 
         jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
         jButton2.setContentAreaFilled(false);
@@ -130,7 +130,7 @@ public class vistaMenuVendedorTiendaCrear extends javax.swing.JFrame {
 
         jLabel8.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(410, 450, 50, 50);
+        jLabel8.setBounds(170, 510, 180, 180);
 
         Back.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/BgVendedor-01.png"))); // NOI18N
         jPanel1.add(Back);
@@ -187,7 +187,7 @@ public class vistaMenuVendedorTiendaCrear extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(null, getimage);
             ImageIcon img = new ImageIcon(getimage);
             Image imgfit = img.getImage();
-            Image imgfit2 = imgfit.getScaledInstance(300, 300,Image.SCALE_SMOOTH);
+            Image imgfit2 = imgfit.getScaledInstance(180, 180,Image.SCALE_SMOOTH);
             jLabel8.setIcon(new ImageIcon(imgfit2));
         }
 

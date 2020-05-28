@@ -32,6 +32,7 @@ public class vistaMenuAdministrador extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
+        jButton7 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
@@ -46,6 +47,16 @@ public class vistaMenuAdministrador extends javax.swing.JFrame {
         jPanel1.setMaximumSize(new java.awt.Dimension(540, 960));
         jPanel1.setMinimumSize(new java.awt.Dimension(540, 960));
         jPanel1.setLayout(null);
+
+        jButton7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/back-04.png"))); // NOI18N
+        jButton7.setContentAreaFilled(false);
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jButton7);
+        jButton7.setBounds(30, 20, 70, 70);
 
         jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/btnAdmin-04.png"))); // NOI18N
         jButton3.setContentAreaFilled(false);
@@ -141,6 +152,13 @@ public class vistaMenuAdministrador extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+
+        vistaInicial vl = new vistaInicial();
+        vl.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -182,6 +200,7 @@ public class vistaMenuAdministrador extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
 }
